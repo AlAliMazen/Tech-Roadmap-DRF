@@ -52,3 +52,15 @@ class ProfileDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, pk):
+        try:
+            profile = Profile.object.get(pk=pk)
+
+            if profile.user != request.user:
+                return Response({'Detail':"You don't have permission to delete this profile"},
+                                status=status.HTTP_403_FORBIDDEN)
+            profile.delete()
+            return Response({'Detail':"Profile deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+        except Profile.DoesNotExist:
+            return Response({'Detail':'Profile not found'}, status=status.HTTP_404_NOT_FOUND)
