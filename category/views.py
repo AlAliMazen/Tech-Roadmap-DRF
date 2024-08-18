@@ -44,9 +44,9 @@ class CategoryList(APIView):
 
 class CategoryDetail(APIView):
     """
-    Used to update an exisiting category only for authenticated 
-    user
+    Used to update an exisiting category only for authenticated user
     """
+    serializer_class = CategorySerializer
     # check if the user is logged in and authenticated in order to write a post.
     # initialize the class of permission
     permission_classes = [IsOwnerOrReadOnly]
@@ -63,8 +63,16 @@ class CategoryDetail(APIView):
     def get(self, request, pk):
         category = self.get_object(pk)
         serializer = CategorySerializer(
-            category, context ={'request':request}
+            category, context={'request':request}
         )
         return Response(serializer.data)
     
-    
+    def put(self, request, pk):
+        category = self.get_object(pk)
+        serializer = CategorySerializer(
+            category, data=request.data, context={'request':request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
