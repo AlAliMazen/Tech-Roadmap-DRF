@@ -42,3 +42,29 @@ class CategoryList(APIView):
             serializer.errors, status=status.HTTP_400_BAD_REQUEST
         )
 
+class CategoryDetail(APIView):
+    """
+    Used to update an exisiting category only for authenticated 
+    user
+    """
+    # check if the user is logged in and authenticated in order to write a post.
+    # initialize the class of permission
+    permission_classes = [IsOwnerOrReadOnly]
+
+    # still need able to get a category using id
+    def get_object(self, pk):
+        try:
+            category = Category.objects.get(pk=pk)
+            self.check_object_permissions(self.request, category)
+            return category
+        except Category.DoesNotExist:
+            raise Http404
+    
+    def get(self, request, pk):
+        category = self.get_object(pk)
+        serializer = CategorySerializer(
+            category, context ={'request':request}
+        )
+        return Response(serializer.data)
+    
+    
