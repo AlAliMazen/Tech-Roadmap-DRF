@@ -17,5 +17,5 @@ class Category(models.Model):
         ordering = ['created_at']
     
     def __str__(self):
-        return f"{self.id}  | {self.owner} {self.title}"
+        return f"{self.id} {self.title}"
     
