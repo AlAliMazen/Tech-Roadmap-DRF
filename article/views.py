@@ -82,7 +82,6 @@ class ArticleDetail(APIView):
     def delete(self, request, pk):
         try:
             article = Article.object.get(pk=pk)
-
             if article.owner != request.user:
                 return Response({'Detail':"You don't have permission to delete this article"},
                                 status=status.HTTP_403_FORBIDDEN)
