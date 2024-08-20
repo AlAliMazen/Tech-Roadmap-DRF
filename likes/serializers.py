@@ -18,11 +18,11 @@ class LikesSerializer(serializers.ModelSerializer):
         fields = ['id','owner','article','created_at']
 
     # handling the duplication of like to the same article
-    def create(self, validation_data):
+    def create(self, validated_data):
         try:
             # the method create is part of ModelSerializer
             # that's why we need to call it using super
-            return super.create(validation_data)
+            return super().create(validated_data)
         except IntegrityError:
             raise serializers.ValidationError({
                 "details":'possible duplicate'
