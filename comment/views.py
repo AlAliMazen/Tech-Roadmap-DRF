@@ -12,9 +12,12 @@ You need just to learn the syntax
 """
 
 class CommentList(generics.ListCreateAPIView):
+    """
+    List all the available comments 
+    """
     serializer_class = CommentSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnyl]
-    queryset = Comment.object.all()
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    queryset = Comment.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
