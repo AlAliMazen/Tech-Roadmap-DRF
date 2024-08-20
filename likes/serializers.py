@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from rest_framework import serializers
 from .models import Likes
 
@@ -15,3 +16,15 @@ class LikesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Likes
         fields = ['id','owner','article','created_at']
+
+    # handling the duplication of like to the same article
+    def create(self, validation_data):
+        try:
+            # the method create is part of ModelSerializer
+            # that's why we need to call it using super
+            return super.create(validation_data)
+        except IntegrityError:
+            raise serializers.ValidationError({
+                "details":'possible duplicate'
+            })
+            
