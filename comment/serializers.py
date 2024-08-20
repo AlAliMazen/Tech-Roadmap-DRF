@@ -18,3 +18,12 @@ class CommentSerializer(serializers.ModelSerializer):
             'id','owner','is_owner','profile_id','profile_image',
             'article','created_at','updated_at','content'
         ]
+
+
+# using the following class to make comments be related to specific article.
+class CommentDetailSerializer(CommentSerializer):
+    """
+    Serializer for the Comment model used in Detail view
+    Artiicle is a read only field so that we don't have to set it on each update
+    """
+    article = serializers.ReadOnlyField(source='artcile.id')
