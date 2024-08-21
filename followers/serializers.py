@@ -3,11 +3,11 @@ from rest_framework import serializers
 from followers.models import Follower
 
 
-class FollowerSerializer(serializers.ModelSerializers):
+class FollowerSerializer(serializers.ModelSerializer):
     """
     Serializers for followers model
     """
-    ownner = serializers.ReadOnlyField(source='owner.username')
+    owner = serializers.ReadOnlyField(source='owner.username')
     followed_name = serializers.ReadOnlyField(source='followed.username')
 
     class Meta:
