@@ -8,6 +8,11 @@ class ProfileSerializer(serializers.ModelSerializer):
     # creates a field like is_owner field which is read only 
     is_owner = serializers.SerializerMethodField()
     following_id = serializers.SerializerMethodField()
+
+    # adding the annotation fields
+    articles_count = serializers.ReadOnlyField()
+    followers_count = serializers.ReadOnlyField()
+    following_count = serializers.ReadOnlyField()
     
 
     # add a field to tell if the logged in user is the owner of the profile
@@ -28,7 +33,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Profile
-        fields = [
-            'id','owner', 'nickname', 'about', 'created_at',
-            'updated_at', 'image', 'is_owner', 'following_id',
-        ]
+        #fields = '__all__'
+        fields = ['id','owner','is_owner','following_id','articles_count',
+                  'following_count','nickname','about','created_at','updated_at',
+                  'image','followers_count']

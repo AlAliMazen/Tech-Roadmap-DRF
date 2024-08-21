@@ -16,7 +16,30 @@ class ProfileList(generics.ListAPIView):
     List all profiles
     No Create view (post method),
     """
-    queryset = Profile.objects.all()
+    queryset = Profile.objects.annotate(
+        articles_count=Count('owner__article', distinct=True),
+        # the ones who follow the profile owner
+        followers_count=Count('owner__followed', distinct=True),
+        
+        # the ones who is being followed by the owner
+        following_count=Count('owner__following', distinct=True)
+    ).order_by('-created_at')
+
+    # adding the filter mechanism
+    filter_backends = [
+        filters.OrderingFilter
+    ]
+
+    ordering_fields = [
+        'articles_count',
+        'followers_count',
+        'following_count',
+
+        # adding on how recent and how long they have beein following or followd
+        'owner__following__created_at',
+        'owner__followed__created_at',
+    ]
+
     serializer_class = ProfileSerializer
 
 class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
