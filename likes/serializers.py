@@ -9,10 +9,11 @@ class LikeSerializer(serializers.ModelSerializer):
     The create method handles the unique constraint on 'owner' and 'post'
     """
     owner = serializers.ReadOnlyField(source='owner.username')
+    title = serializers.ReadOnlyField(source='article.title')
 
     class Meta:
         model = Like
-        fields = ['id', 'created_at', 'owner','article']
+        fields = '__all__'
 
     def create(self, validated_data):
         try:
