@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from article.models import Article
+from likes.models import Like
 
 class ArticleSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
@@ -7,6 +8,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     category_title = serializers.ReadOnlyField(source='category.title' )
+    like_id = serializers.SerializerMethodField()
     
     # write a fucntion to validate the image size, width and height
     # common convension is to call validate_[name_of_field]
@@ -29,10 +31,21 @@ class ArticleSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
     
+    def get_like_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            like = Like.objects.filter(
+                owner = user, article = obj
+            ).first()
+
+            print(like)
+            return like.id if like else None
+        return None
+    
     class Meta:
         model = Article
         fields = [
             'id','owner','is_owner','profile_id','profile_image',
             'category_title','created_at','updated_at','title',
-            'content','image','category'
+            'content','image','category','like_id',
         ]
