@@ -47,6 +47,13 @@ class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     Retrieve, Updte and Destroy a profile
     """
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Profile.objects.all()
+    queryset = Profile.objects.annotate(
+        articles_count=Count('owner__article', distinct=True),
+        # the ones who follow the profile owner
+        followers_count=Count('owner__followed', distinct=True),
+        
+        # the ones who is being followed by the owner
+        following_count=Count('owner__following', distinct=True)
+    ).order_by('-created_at')
     serializer_class = ProfileSerializer
    
