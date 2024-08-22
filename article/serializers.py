@@ -9,7 +9,9 @@ class ArticleSerializer(serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     category_title = serializers.ReadOnlyField(source='category.title' )
     like_id = serializers.SerializerMethodField()
-    
+    likes_count = serializers.ReadOnlyField()
+    comments_count = serializers.ReadOnlyField()
+
     # write a fucntion to validate the image size, width and height
     # common convension is to call validate_[name_of_field]
     def validate_image(self, value):
@@ -47,5 +49,6 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = [
             'id','owner','is_owner','profile_id','profile_image',
             'category_title','created_at','updated_at','title',
-            'content','image','category','like_id',
+            'content','image','category','like_id','likes_count',
+            'comments_count'
         ]
