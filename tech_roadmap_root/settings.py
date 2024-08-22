@@ -28,6 +28,26 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# to check when we are in the production or development mode
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthentication'
+        if 'DEV' in os.environ
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )]
+}
+
+REST_USE_JWT = True
+JWT_AUTH_SECURE = True
+# access tokem
+JWT_AUTH_COOKIE = 'my-app-auth'
+# refresh token
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER':'drf_api.serializers.CurrentUserSerializer'
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -55,6 +75,14 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_summernote',
     'django_filters',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+
     'profiles',
     'category',
     'article',
@@ -62,7 +90,7 @@ INSTALLED_APPS = [
     'likes',
     'followers',
 ]
-
+SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -71,6 +99,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # this line must be added -> not shown in the walkthrough
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'tech_roadmap_root.urls'
