@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'cloudinary',
     'django_summernote',
+    'django_filters',
     'profiles',
     'category',
     'article',
