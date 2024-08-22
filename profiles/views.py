@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.db.models import Count
 from rest_framework import generics,filters, status
+from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -27,9 +28,13 @@ class ProfileList(generics.ListAPIView):
 
     # adding the filter mechanism
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        DjangoFilterBackend,
     ]
 
+    filterset_field = [
+        'owner__following__followed__profile',
+    ]
     ordering_fields = [
         'articles_count',
         'followers_count',
