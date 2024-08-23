@@ -78,12 +78,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django_filters',
     'cloudinary_storage',
     'django.contrib.staticfiles',
-    'cloudinary',
-    'django_summernote',
     'rest_framework',
-    'django_filters',
     'rest_framework.authtoken',
     'dj_rest_auth',
     'django.contrib.sites',
@@ -91,6 +89,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'cloudinary',
+    'django_summernote',
+
     'profiles',
     'category',
     'article',
@@ -99,6 +100,7 @@ INSTALLED_APPS = [
     'followers',
 ]
 SITE_ID = 1
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

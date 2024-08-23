@@ -15,17 +15,14 @@ class CommentSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
     
-    def ger_created_at(self, obj):
+    def get_created_at(self, obj):
         return naturaltime(obj.created_at)
     
     def get_updated_at(self, obj):
         return naturaltime(obj.updated_at)
     class Meta:
         model = Comment
-        fields = [
-            'id','owner','is_owner','profile_id','profile_image',
-            'article','created_at','updated_at','content','article_id',
-        ]
+        fields = '__all__'
 
 
 # using the following class to make comments be related to specific article.
