@@ -10,11 +10,12 @@ crispy-bootstrap5==0.7
 cryptography==42.0.8
 defusedxml==0.7.1
 dj-database-url==0.5.0
-dj-rest-auth==6.0.0
+dj-rest-auth==2.1.9
 dj3-cloudinary-storage==0.0.6
 Django==4.2.15
 django-allauth==0.57.2
 django-cloudinary-storage==0.3.0
+django-cors-headers==4.3.1
 django-crispy-forms==2.2
 django-db-geventpool==4.0.6
 django-filter==24.3
