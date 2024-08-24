@@ -1,6 +1,7 @@
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.db import IntegrityError
 from rest_framework import serializers
-from .models import Course, AVAILABLE_COURSES
+from .models import Course
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -9,8 +10,9 @@ class CourseSerializer(serializers.ModelSerializer):
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     category_title = serializers.ReadOnlyField(source='category.title' )
-    course_title = serializers.SerializerMethodField(source='course.title')
-
+    course_title = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
+    updated_at = serializers.SerializerMethodField()
 
     # common convension is to call validate_[name_of_field]
     def validate_image(self, value):
@@ -32,13 +34,14 @@ class CourseSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
     
+    def get_created_at(self, obj):
+        return naturaltime(obj.created_at)
     
+    def get_updated_at(self, obj):
+        return naturaltime(obj.updated_at)
 
     def get_course_title(self, obj):
-       for key, value in AVAILABLE_COURSES:
-           if obj.title == key:
-               return value
-       return obj.title
+       return obj.get_title_display()
     
     class Meta:
         model = Course
