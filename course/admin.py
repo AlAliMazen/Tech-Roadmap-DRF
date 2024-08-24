@@ -5,7 +5,7 @@ from .models import Course
 # Register your models here.
 @admin.register(Course)
 class CourseAdmin(SummernoteModelAdmin):
-    list_display = ('id', 'title', 'participant', 'category',)
-    search_fields = ['title', 'participant']
+    list_display = ('id', 'title', 'owner', 'category',)
+    search_fields = ['title', 'owner']
     list_filter = ('title',)
     summernote_fields = ('about',)
