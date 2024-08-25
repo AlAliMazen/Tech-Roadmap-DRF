@@ -44,6 +44,7 @@ REST_FRAMEWORK = {
         # change time and date format
         'DATETIME_FORMATE': '%d %b %Y',
 }
+
 if 'DEV' not in os.environ:
     REST_FRAMEWORK['DEFAULT_RENDER_CLASSES']=[
         'rest_framework.renderers.JSONRenderer',
@@ -58,7 +59,8 @@ JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER':'tech_roadmap_root.serializers.CurrentUserSerializer'
+    'USER_DETAILS_SERIALIZER':
+    ('tech_roadmap_root.serializers.CurrentUserSerializer')
 }
 
 # Quick-start development settings - unsuitable for production
@@ -70,7 +72,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = [ os.environ.get('ALLOWED_HOST'), 'localhost']
 
 
 # Application definition
