@@ -1,4 +1,6 @@
-![Tech ROAD MAP Logo](assets/READMEN/Tech_roadmap_BB.png)
+
+  ![Tech ROAD MAP Logo](assets/READMEN/Tech_roadmap_BB.png)
+ 
 
 # Tech-Roadmap-DRF,
 
@@ -29,5 +31,23 @@ In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to cre
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
+# Planning
 
+## Objectives
+
+1. **Provide a Comprehensive IT Learning Platform**: Create a centralized resource that offers diverse IT-related articles.
+
+2. **Enable Personalized Learning Paths**: Develop a system that recommends specialized courses and content targeting users' interests, experience levels to draw future career paths.
+
+3. **Facilitate User Interaction and Engagement**: Implement features that allow users to comment, review, and rate content.
+
+4. **Promote Knowledge Sharing**: Encourage users to contribute their insights, experiences, and feedback, enriching the platform with community-driven content and discussions.
+
+5. **Ensure Secure User Authentication**: Implement a secure authentication system to an account which belongs to a certain user data and provide a personalized experience based on user profiles.
+
+6. **Integrate Social Features**: Allow users to follow others, create connections , and build a network that supports collaborative learning.
+
+7. **Optimize for Scalability and Performance**: Ensure the API is designed for high performance and scalability to accommodate a growing user base and expanding content library.
+
+8. **Provide Comprehensive Documentation and API Support**: Offer detailed documentation for the API, making it easy for developers to integrate, extend, and contribute to the project.
 
