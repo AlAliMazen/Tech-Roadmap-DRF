@@ -51,3 +51,40 @@ In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to cre
 
 8. **Provide Comprehensive Documentation and API Support**: Offer detailed documentation for the API, making it easy for developers to integrate, extend, and contribute to the project.
 
+## Allocated Time for Django Rest API
+
+When I first come to the idea why should I develope an API tha is only accessible for the Admins, I didn't get the point clear enough that the API is just like a blue print which can be used to build different front end website based on the endpoints offered by this API. Developing an API that is accessible for Front-End Website is a game changer and that is why I tool some time to paln and implement the API using a walkthrough project by Code Institute 
+
+**Coding the Backend DRF took me about 12 days WITHOUT README**
+
+the **Timeline** looks like the following:
+
+Day 1 : Intitialising the project on GitHub using the [procvided Code Institue template](https://github.com/Code-Institute-Org/ci-full-template) provided. Cloning the Project on the Visual Studio IDE locally and set up environment variables.
+
+Day 2: Designing the Database in its primary structure and required entities. Models shown in this project are designed on [Qucik Database Diagram](https://app.quickdatabasediagrams.com/#/d/qGYihO)
+
+Day 3: Normalising the Relationship between the different entities any models. 
+
+Day 4 till Day 10: This period is the coding time where I used the Code Institue walkthrough project to tailor my project. Afterwards, I did add more models to my project which will enhance the user experience about the exapnding and extending the project. The new modesl like (Category, Course, Review and Rating) are coded to target users who want not just to read, comment and review the available articles but instead take them a step further to choose a course and go for it. If the course provided helped them, they will be able to write their review and rate it. It helps other users to make decision better on the experience of other participants. It is also worth mentioning that during the coding stage I make a use of new skills gained from the walkthrough project. Refactoring the code is one of the main and major skills to reduce the amount of code and reaching the same final result. Finally, I applied the filter mechanism to some of the models and left someother to be like a future feature when other programmers will deploy this API and make some changes to their cloned copy of this API. 
+
+Day 11 and day 12: Deployment on Heroku Platform: preparing the project when it is API requires migrating the Database which is designed and implementing locally using SQLite. I took the following steps:
+
+1. Updainting the ALLOWED_HOSTS variable.
+2. Moving sensitive data to env.py
+3. Installing extra packages for authentication
+4. Installing the TOKEN packages
+5. Editing the settings.py file with TOKEN varibales
+6. Editing the urls.py file of the root project
+7. Freezing the dependencies into the requirement.txt file
+8. Creating the PocFile which is required on the HEROKU Platform
+9. Creating the Database on PostGRES and link it into the project settings.py file
+10. Setting a new App on Heroku Platform
+11. Link the App Source to GitHub
+12. Creating the Varibale from the env.py on HEROKU 
+13. Manuelly deploying the project.
+
+**Deployment on Heroku** will be explained in a later section
+
+**Writing the README** starts after deployment of this API which is not recommend because it would be tedious work, though it presents a big and complete project to explain and dive into its details.
+
+
