@@ -205,7 +205,7 @@ The Category model is a critical component of the Tech-ROADMAP-DRF platform, des
     - The `created_at` field automatically records when the category was first created.
     - The `updated_at` field logs when the category was last modified. These timestamps help in tracking changes and managing the lifecycle of the category.
 
-### Relation to the Article Model
+**Relation to the Article Model**
 
 The Category model plays a vital role in structuring the content within the platform. Each article is linked to a specific category through a foreign key relationship, ensuring that all content is neatly organized under relevant IT segments. This relationship facilitates content discovery, allowing users to navigate through topics more efficiently and find articles that match their interests.
 
@@ -234,3 +234,79 @@ The Comment model is designed to attract user interaction and engagement with th
 The Comment model is integrated with both the Article and User models, creating a dynamic and interactive content ecosystem.
 
 This relationship encourages community engagement, allowing users to contribute to the content in meaningful ways.
+
+### Like Model
+
+The Like model is a simple yet important part of the Tech-ROADMAP-DRF platform, allowing users to show appreciation for articles by "liking" them. This model helps track user engagement and provides feedback to content creators on what articles are popular or well-received.
+
+![Like-model](assets/READMEN/tech-DB-like-5.png)
+
+**Key Features of the Like Model**
+
+1. **Owner Association**: The `owner` field links each like to the user who gave it. This connection allows the platform to track which users liked which articles.
+
+2. **Article Association**: The `article` field connects each like to a specific article. This ensures that likes are tied directly to the content they are intended for, helping to measure the popularity of each article.
+
+3. **Timestamp**: The `created_at` field automatically records when the like was given. This helps in understanding when users are most active and what content is trending over time.
+
+**Relation to the Article and User Models**
+
+The Like model is connected to both the User and Article models. When a user likes an article, it creates a record in the Like model, linking the user (owner) to the article. This relationship is simple but powerful, as it helps build a sense of community by showing which content resonates most with users.
+
+**Important about Like Model**
+
+This model has a mechanism which let the user only put one like to a certain article. The line `unique_together = ['owner', 'article']`implies that the user can't like the same article twice. In fact, it has to do with the Data Integrity which will show a message indicating that the `possible duplication`are found meaning that one user can't like the same article twice. 
+
+### Follower Model Overview with Unique Constraint
+
+The Follower model allows users on the Tech-ROADMAP-DRF platform to follow other users. This feature helps users stay connected and engaged by keeping track of activities and content shared by those they follow.
+
+![Follower-Model](assets/READMEN/tech-DB-followers-6.png)
+
+**Key Features of the Follower Model**
+
+1. **Owner (Follower) Association**: The `owner` field represents the user who is following another user. This establishes who is initiating the follow action.
+
+2. **Followed User Association**: The `followed` field links to the user being followed. This connection allows the platform to track and manage who follows whom.
+
+3. **Timestamp**: The `created_at` field automatically records when the follow action was initiated. This helps in maintaining a timeline of user interactions.
+
+4. **Unique Constraint**: The `unique_together` constraint in the Meta class ensures that a user can only follow another user once. This prevents duplicate follow relationships, keeping the follow system clean and consistent.
+
+5. **Ordering**: The `ordering` attribute in the Meta class ensures that follow records are ordered by the time they were created, with the most recent follows appearing first.
+
+**Relation to the User Model**
+
+The Follower model is linked to the User model, connecting users by establishing a relationship between the follower (owner) and the followed user. The unique constraint ensures that each user can only follow another user **ONCE**, which helps maintain an accurate and meaningful network of connections within the platform.
+
+### Course Model
+
+The Course model is a key component of the Tech-ROADMAP-DRF platform, designed to manage the different IT-related courses that users can choose to pursue. This model helps in organizing and delivering educational content across various IT disciplines, allowing users to select and engage with courses that align with their interests and career goals.
+
+![Course-Model](assets/READMEN/tech-DB-course-7.png)
+
+**Key Features of the Course Model**
+
+1. **Owner Association**: The `owner` field links each course to the user who selected it. This connection allows the platform to track which users are enrolled in which courses.
+
+2. **Category Association**: The `category` field connects the course to a specific category, helping to group courses under relevant IT segments. This makes it easier for users to explore and choose courses within their area of interest.
+
+3. **Course Title**: The `title` field is an integer field that uses the `AVAILABLE_COURSES` tuple to provide a list of predefined course options. Users can choose from a variety of IT topics such as "Networking Fundamentals," "Software Development," "Cybersecurity," and more. This predefined list **AVAILABLE_COURSE** ensures that courses are standardized and easily recognizable.
+
+4. **About Section**: The `about` field allows users to enter additional information about the course, such as a description or overview. This optional field helps provide context and details about the course content.
+
+5. **Duration**: The `duration` field captures the length or estimated time required to complete the course. This information is important for users to manage their time and set expectations.
+
+6. **Thumbnail Image**: The `thumbnailImage` field allows users to upload an image that represents the course. This can enhance the visual appeal and make the course more recognizable. A default image is used if no thumbnail is provided.
+
+7. **Timestamps**:
+   - The `created_at` field automatically records when the course was created.
+   - The `updated_at` field logs when the course was last updated. These timestamps help in tracking the course's lifecycle and any changes made over time.
+
+8. **Unique Constraint**: The `unique_together` constraint in the Meta class ensures that a user cannot enroll in the same course more than once. This prevents duplicate enrollments and maintains the integrity of the user's course history.
+
+9. **Ordering**: The `ordering` attribute ensures that courses are listed by their creation date, with the most recent courses appearing first. This helps users see the latest content available.
+
+**Relation to the User and Category Models**
+
+The Course model is linked to both the User and Category models, creating a structured way to manage user enrollments in various IT courses. The unique constraint ensures that each user can only choose a particular course once, providing a clear and organized system for managing educational content. The predefined list of available courses standardizes the educational offerings, making it easy for users to navigate and select courses that best suit their learning goals.
