@@ -141,7 +141,9 @@ In many applications, the default fields provided by the User model may not be s
 
 The Profile model is an extension of the core User model, designed to store additional user-specific information that goes beyond basic authentication and user management. It enriches the user experience by allowing for more detailed personal profiles, which can be customized to fit the needs of the application.
 
-### Key Features of the Profile Model
+![profile-Model](assets/READMEN/tech-DB-profile-1.png)
+
+**Key Features of the Profile Model**
 
 1. **One-to-One Relationship with User**: The `owner` field establishes a one-to-one relationship with the User model using Django's `OneToOneField`. This ensures that each user has a unique profile, directly linked to their account, and allows easy access to extended user data.
 
@@ -160,6 +162,8 @@ The Profile model is tightly coupled with the User model, providing a way to ext
 ### Article Model
 
 The Article model is designed to enable authenticated users to create and publish articles within specific segments of the IT world. This model forms the core content structure of the Tech-ROADMAP-DRF platform, allowing users to contribute knowledge and insights by writing articles that are categorized under various IT Segments.
+
+![Article-model](assets/READMEN/tech-DB-article-2.png)
 
 **Key Features of the Article Model**
 
@@ -187,6 +191,8 @@ The Article model is closely tied to the User model through the `owner` field, m
 
 The Category model is a critical component of the Tech-ROADMAP-DRF platform, designed to organize and classify articles into specific IT segments. This model ensures that all content is systematically categorized, making it easier for users to find and explore articles related to their areas of interest.
 
+![Category-Model](assets/READMEN/tech-DB-categroy-4.png)
+
 **Key Features of the Category Model**
 
 1. **Owner Association**: The `owner` field links each category to a specific user, typically an admin or a content manager, who is responsible for creating and managing categories. The use of `on_delete=models.PROTECT` ensures that categories cannot be accidentally deleted if they are associated with existing articles, maintaining the integrity of the content structure.
@@ -208,6 +214,8 @@ By categorizing articles, the platform can provide a more user-friendly experien
 ### Comment Model
 
 The Comment model is designed to attract user interaction and engagement with the content. It enables users to leave feedback, ask questions, and share views on articles.
+
+![Comment-model](assets/READMEN/tech-DB-comment-3.png)
 
 **Key Features of the Comment Model**
 
