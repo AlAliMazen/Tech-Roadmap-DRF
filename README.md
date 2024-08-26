@@ -153,7 +153,7 @@ The Profile model is an extension of the core User model, designed to store addi
 
 5. **Profile Image**: The `image` field allows users to upload a profile picture, which enhances personalization and visual identification across the platform. If no image is provided, a default profile image is used.
 
-### Relation to the User Model
+**Relation to the User Model**
 
 The Profile model is tightly coupled with the User model, providing a way to extend and customize user data without altering the core User model itself. This separation of concerns ensures that authentication and user management remain focused and efficient, while the Profile model handles all additional user attributes that enhance the overall user experience.
 
@@ -179,6 +179,50 @@ The Article model is designed to enable authenticated users to create and publis
     - The `created_at` field automatically records the date and time when the article is first created.
     - The `updated_at` field captures when the article is last modified. These timestamps help in tracking the lifecycle and revisions of an article.
 
-### Relation to the User Model
+**Relation to the User Model**
 
 The Article model is closely tied to the User model through the `owner` field, making it possible to associate each piece of content with its author. This relationship not only facilitates content management but also ensures that users can build a portfolio of their contributions within the platform. The Article model, with its structured approach to categorization and content management, plays a pivotal role in delivering organized and accessible IT knowledge to users.
+
+### Category Model
+
+The Category model is a critical component of the Tech-ROADMAP-DRF platform, designed to organize and classify articles into specific IT segments. This model ensures that all content is systematically categorized, making it easier for users to find and explore articles related to their areas of interest.
+
+**Key Features of the Category Model**
+
+1. **Owner Association**: The `owner` field links each category to a specific user, typically an admin or a content manager, who is responsible for creating and managing categories. The use of `on_delete=models.PROTECT` ensures that categories cannot be accidentally deleted if they are associated with existing articles, maintaining the integrity of the content structure.
+
+2. **Title**: The `title` field stores the name of the category, which is used to label and identify the type of content contained within. This title is crucial for both users and the system to recognize the category's purpose and scope.
+
+3. **Description**: The `description` field provides additional context about the category. It can include a summary of the types of articles or topics covered under this category, helping users understand what kind of content they can expect to find.
+
+4. **Timestamps**:
+    - The `created_at` field automatically records when the category was first created.
+    - The `updated_at` field logs when the category was last modified. These timestamps help in tracking changes and managing the lifecycle of the category.
+
+### Relation to the Article Model
+
+The Category model plays a vital role in structuring the content within the platform. Each article is linked to a specific category through a foreign key relationship, ensuring that all content is neatly organized under relevant IT segments. This relationship facilitates content discovery, allowing users to navigate through topics more efficiently and find articles that match their interests.
+
+By categorizing articles, the platform can provide a more user-friendly experience, where users can easily explore various IT fields and deepen their knowledge in specific areas. The Category model, therefore, serves as a backbone for content organization, enhancing both the functionality and usability of the Tech-ROADMAP-DRF platform.
+
+### Comment Model
+
+The Comment model is designed to attract user interaction and engagement with the content. It enables users to leave feedback, ask questions, and share views on articles.
+
+**Key Features of the Comment Model**
+
+1. **Owner Association**: The `owner` field establishes a foreign key relationship with the User model, linking each comment to the user who wrote it. This connection is for tracking user contributions and managing comment interactions across the front-end later on.
+
+2. **Article Association**: The `article` field links each comment to a specific article through a foreign key relationship. This association ensures that comments are attached to the content they are related to.
+
+3. **Content**: The `content` field stores the text of the comment. This field is required (`blank=False`), ensuring that every comment contains meaningful input from the user, whether it's feedback, a question, or a view related to the article.
+
+4. **Timestamps**:
+    - The `created_at` field automatically records when the comment was first posted, helping to maintain a chronological order of discussions.
+    - The `updated_at` field logs when the comment was last edited, which is important for tracking changes and updates to the user's input.
+
+**Relation to the Article and User Models**
+
+The Comment model is integrated with both the Article and User models, creating a dynamic and interactive content ecosystem.
+
+This relationship encourages community engagement, allowing users to contribute to the content in meaningful ways.
