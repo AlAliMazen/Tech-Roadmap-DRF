@@ -156,3 +156,29 @@ The Profile model is an extension of the core User model, designed to store addi
 ### Relation to the User Model
 
 The Profile model is tightly coupled with the User model, providing a way to extend and customize user data without altering the core User model itself. This separation of concerns ensures that authentication and user management remain focused and efficient, while the Profile model handles all additional user attributes that enhance the overall user experience.
+
+### Article Model
+
+The Article model is designed to enable authenticated users to create and publish articles within specific segments of the IT world. This model forms the core content structure of the Tech-ROADMAP-DRF platform, allowing users to contribute knowledge and insights by writing articles that are categorized under various IT Segments.
+
+**Key Features of the Article Model**
+
+1. **Owner Association**: The `owner` field establishes a foreign key relationship with the User model, linking each article to the user who created it. This allows for tracking authorship and managing user-generated content effectively.
+
+2. **Category Classification**: The `category` field connects each article to a specific Category model, ensuring that articles are organized under relevant IT segments. This categorization helps users easily navigate and discover content based on their interests.
+
+3. **Title and Slug**: 
+    - The `title` field allows users to provide a clear and concise name for their article, which is crucial for attracting readers.
+    - The `slug` field generates a URL-friendly version of the title, which is unique to each article. This is essential for SEO and ensures that each article can be accessed via a specific, readable URL.
+
+4. **Content**: The `content` field is where the main body of the article is stored. It supports rich text, allowing authors to elaborate on IT topics, provide insights, and share knowledge.
+
+5. **Image**: The `image` field allows authors to upload an image to accompany their article, which can enhance visual appeal and contextual understanding. If no image is uploaded, a default image is used.
+
+6. **Timestamps**: 
+    - The `created_at` field automatically records the date and time when the article is first created.
+    - The `updated_at` field captures when the article is last modified. These timestamps help in tracking the lifecycle and revisions of an article.
+
+### Relation to the User Model
+
+The Article model is closely tied to the User model through the `owner` field, making it possible to associate each piece of content with its author. This relationship not only facilitates content management but also ensures that users can build a portfolio of their contributions within the platform. The Article model, with its structured approach to categorization and content management, plays a pivotal role in delivering organized and accessible IT knowledge to users.
