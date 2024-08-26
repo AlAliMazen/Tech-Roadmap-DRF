@@ -13,11 +13,24 @@ With Tech-ROADMAP-DRF, users can navigate the often overwhelming array of IT dis
 In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to create a user-friendly backend system that not only delivers content but also fosters an interactive and supportive learning environment, making it an invaluable tool for aspiring IT professionals.
 
 - [Tech-Roadmap-DRF,](#tech-roadmap-drf-)
-- [Table of content](#table-of-content)
 - [Planning](#planning)
+  * [Objectives](#objectives)
+  * [Allocated Time for Django Rest API](#allocated-time-for-django-rest-api)
 - [Data Models](#data-models)
-  * [ERD Diagram](#erd-diagram)
-  * [Entitiy and Realtions](#entitiy-and-realtions)
+  * [Database Models](#database-models)
+  * [Entity Relational Diagram (ERD):](#entity-relational-diagram--erd--)
+  * [Architecture](#architecture)
+  * [Logic Through ERD](#logic-through-erd)
+    + [User MOdel](#user-model)
+    + [Profile Model](#profile-model)
+    + [Article Model](#article-model)
+    + [Category Model](#category-model)
+    + [Comment Model](#comment-model)
+    + [Like Model](#like-model)
+    + [Follower Model Overview with Unique Constraint](#follower-model-overview-with-unique-constraint)
+    + [Course Model](#course-model)
+    + [Review Model](#review-model)
+    + [Rating Model Overview](#rating-model-overview)
 - [API Endpoints](#api-endpoints)
 - [Frameworks, Libraries and Dependencies](#frameworks--libraries-and-dependencies)
 - [Testing](#testing)
@@ -310,3 +323,57 @@ The Course model is a key component of the Tech-ROADMAP-DRF platform, designed t
 **Relation to the User and Category Models**
 
 The Course model is linked to both the User and Category models, creating a structured way to manage user enrollments in various IT courses. The unique constraint ensures that each user can only choose a particular course once, providing a clear and organized system for managing educational content. The predefined list of available courses standardizes the educational offerings, making it easy for users to navigate and select courses that best suit their learning goals.
+
+### Review Model
+
+The Review model is designed to allow users to provide feedback on the courses they have taken within the Tech-ROADMAP-DRF platform. Main goal is to capture user experiences, helping others make decisions about which courses to take, and providing valuable feedback to course creators.
+
+![Tec-Review-model](assets/READMEN/tech-DB-review-8.png)
+
+**Key Features of the Review Model**
+
+1. **Owner Association**: The `owner` field links each review to the user who wrote it. This association is essential for tracking which users have reviewed which courses.
+
+2. **Course Association**: The `course` field directly references the `AVAILABLE_COURSES` tuple, allowing users to select which course they are reviewing. This field ensures that reviews are correctly associated with the specific course being evaluated.
+
+3. **Content**: The `content` field allows users to write their thoughts, opinions, or feedback about the course. This field is optional (`blank=True`), providing users the flexibility to leave a review with or without additional comments.
+
+4. **Timestamps**:
+   - The `created_at` field automatically records when the review was first written, helping to establish the timeline of user feedback.
+   - The `updated_at` field logs when the review was last edited, allowing users to update their reviews over time.
+
+5. **Unique Constraint**: The `unique_together` constraint in the Meta class ensures that a user can only leave one review per course. This prevents duplicate reviews and ensures that each user's feedback is unique and meaningful.
+
+6. **Ordering**: The `ordering` attribute ensures that reviews are displayed based on their creation date, with the most recent reviews appearing first using the value `-created_at` as a value inside the square brackets. 
+
+**Relation to the User and Course Models**
+
+The Review model is connected to the User model, allowing each user to review a course they have taken. The unique constraint ensures that users provide only one review per course, which helps maintain the quality and reliability of the feedback system.
+
+
+### Rating Model Overview
+
+The Rating model is designed to capture user ratings for courses within the Tech-ROADMAP-DRF platform. This model allows users to provide a numerical evaluation of the courses they have completed, contributing to a cumulative score that reflects the quality and user satisfaction of each course.
+
+![Tech-Rating-model](assets/READMEN/tech-DB-rating-9.png)
+
+
+**Key Features of the Rating Model**
+
+1. **Owner Association**: The `owner` field links each rating to the user who provided it. This connection is crucial for tracking which users have rated which courses.
+
+2. **Course Association**: The `course` field references the `AVAILABLE_COURSES` tuple, ensuring that each rating is associated with a specific course. This setup helps maintain a clear and organized record of course evaluations.
+
+3. **Rating Value**: The `rating` field allows users to assign a score to the course on a scale from 0.0 to 10.0. This field is validated to ensure that ratings fall within this range, providing a standardized measure of course quality.
+
+4. **Timestamps**:
+   - The `created_at` field automatically records when the rating was first given, helping to track when users evaluated the course.
+   - The `updated_at` field logs when the rating was last modified, allowing users to update their ratings if their opinions change over time.
+
+5. **Unique Constraint**: The `unique_together` constraint in the Meta class ensures that each user can only rate a course once. This prevents duplicate ratings and ensures that the overall course rating remains accurate and reflective of unique user input.
+
+6. **Ordering**: The `ordering` attribute ensures that ratings are displayed by their creation date, with the most recent ratings appearing first.
+
+**Relation to the User and Course Models**
+
+The Rating model is linked to the User model, allowing users to rate the courses they have taken. The unique constraint ensures that each user can provide only one rating per course, which helps maintain a fair and accurate system of course evaluation. By aggregating these ratings, the platform can offer insights into the overall quality and user satisfaction of each course, aiding future users in making informed decisions about their learning paths.
