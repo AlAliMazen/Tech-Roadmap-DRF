@@ -9,7 +9,7 @@ class Review(models.Model):
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.IntegerField(choices=AVAILABLE_COURSES)  # Direct reference to AVAILABLE_COURSES
-    content = models.TextField(blank=True)
+    content = models.TextField(blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
