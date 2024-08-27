@@ -46,7 +46,7 @@ REST_FRAMEWORK = {
 }
 
 if 'DEV' not in os.environ:
-    REST_FRAMEWORK['DEFAULT_RENDER_CLASSES']=[
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES']=[
         'rest_framework.renderers.JSONRenderer',
     ]
 
@@ -73,7 +73,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 #DEBUG = 'DEV' in os.environ
 DEBUG = False
 
-ALLOWED_HOSTS = [ os.environ.get('ALLOWED_HOST'), '127.0.0.1']
+ALLOWED_HOSTS = [ os.environ.get('ALLOWED_HOST'), '127.0.0.1',]
 
 
 # Application definition
