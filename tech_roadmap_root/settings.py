@@ -71,7 +71,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = 'DEV' in os.environ
-DEBUG = False
+#DEBUG = False
 
 ALLOWED_HOSTS = [ os.environ.get('ALLOWED_HOST'), '127.0.0.1',]
 
@@ -114,15 +114,13 @@ SITE_ID = 1
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # this line must be added -> not shown in the walkthrough
-    'allauth.account.middleware.AccountMiddleware',
+    
 ]
 
 if 'CLIENT_ORIGIN' in os.environ:

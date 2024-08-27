@@ -18,15 +18,15 @@ from django.urls import path, include
 from .views import root_route, logout_route
 
 urlpatterns = [
-    path('',root_route),
+   path('', root_route),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/logout/', logout_route),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
-    #path('auth/', include('dj_rest_auth.urls')),
-    path('dj-rest-auth/logout', logout_route),
-    path('dj-rest-auth/', include('dj_rest_auth.urls')),
-
-    #path('auth/registration/', include('dj_rest_auth.registration.urls')),
+    path(
+        'dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')
+    ),
+    
     path('summernote/', include('django_summernote.urls')),
     path('', include('profiles.urls')),
     path('', include('category.urls')),
