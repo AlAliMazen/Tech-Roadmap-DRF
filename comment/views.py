@@ -21,14 +21,14 @@ class CommentList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.all()
 
-    filter_backends = [
-        DjangoFilterBackend
-    ]
+    #filter_backends = [
+    #    DjangoFilterBackend
+    #]
 
     # adding filterset
-    filterset_field = [
-        'article',
-    ]
+    #filterset_field = [
+    #    'article',
+    #]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

@@ -46,9 +46,4 @@ class ArticleSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Article
-        fields = [
-            'id','owner','is_owner','profile_id','profile_image',
-            'category_title','created_at','updated_at','title',
-            'content','image','category','like_id','likes_count',
-            'comments_count'
-        ]
+        fields = '__all__'

@@ -10,17 +10,20 @@ class ArticleList(generics.ListCreateAPIView):
     """
     Refactoring to list and post new artices
     """
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = ArticleSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    
     queryset = Article.objects.annotate(
         likes_count=Count('likes', distinct=True),
         comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
+
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
-        DjangoFilterBackend
+        DjangoFilterBackend,
     ]
+
     # adding filters_set -> pay attention to double underscores
     filterset_fields = [
         'owner__followed__owner__profile',
@@ -50,4 +53,7 @@ class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = ArticleSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Article.objects.all()
+    queryset = Article.objects.annotate(
+        likes_count=Count('likes', distinct=True),
+        comments_count=Count('comment', distinct=True)
+    ).order_by('-created_at')
