@@ -7,3 +7,12 @@ __pycache__/
 node_modules/
 .github/
 cloudinary_python.txt
+article_data.json
+category_data.json
+comment_data.json
+course_data.json
+followers_data.json
+likes_data.json
+profiles_data.json
+rating.json
+review_data.json
