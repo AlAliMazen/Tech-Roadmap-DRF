@@ -77,7 +77,7 @@ ALLOWED_HOSTS = [ os.environ.get('ALLOWED_HOST'), '127.0.0.1',]
 
 
 # Application definition
-
+# order of t the INSTALLED_APPS is very import
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
