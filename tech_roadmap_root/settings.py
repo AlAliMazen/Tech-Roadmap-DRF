@@ -71,7 +71,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = 'DEV' in os.environ
-#DEBUG = False
+#DEBUG = True
 
 ALLOWED_HOSTS = [ os.environ.get('ALLOWED_HOST'), '127.0.0.1',]
 
@@ -85,8 +85,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django_filters',
-    'cloudinary_storage',
+    
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
@@ -114,6 +115,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -128,9 +130,7 @@ if 'CLIENT_ORIGIN' in os.environ:
          os.environ.get('CLIENT_ORIGIN')
      ]
 else:
-     CORS_ALLOWED_ORIGIN_REGEXES = [
-         r"^https://.*\.gitpod\.io$",
-     ]
+     CORS_ALLOWED_ORIGIN_REGEXES = [r'^https://.*\.gitpod\.io$',]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -214,7 +214,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
