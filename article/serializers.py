@@ -1,3 +1,4 @@
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
 from article.models import Article
 from likes.models import Like
@@ -11,6 +12,8 @@ class ArticleSerializer(serializers.ModelSerializer):
     like_id = serializers.SerializerMethodField()
     likes_count = serializers.ReadOnlyField()
     comments_count = serializers.ReadOnlyField()
+    created_at = serializers.SerializerMethodField()
+    updated_at = serializers.SerializerMethodField()
 
     # write a fucntion to validate the image size, width and height
     # common convension is to call validate_[name_of_field]
@@ -32,6 +35,11 @@ class ArticleSerializer(serializers.ModelSerializer):
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
+    def get_created_at(self, obj):
+        return naturaltime(obj.created_at)
+    
+    def get_updated_at(self, obj):
+        return naturaltime(obj.updated_at)
     
     def get_like_id(self, obj):
         user = self.context['request'].user
