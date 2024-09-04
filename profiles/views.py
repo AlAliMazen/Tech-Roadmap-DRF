@@ -23,7 +23,9 @@ class ProfileList(generics.ListAPIView):
         followers_count=Count('owner__followed', distinct=True),
         
         # the ones who is being followed by the owner
-        following_count=Count('owner__following', distinct=True)
+        following_count=Count('owner__following', distinct=True),
+        # Annotate with the count of enrolled courses
+        courses_count=Count('owner__course', distinct=True)
     ).order_by('-created_at')
 
     # adding the filter mechanism
@@ -35,6 +37,7 @@ class ProfileList(generics.ListAPIView):
     filterset_field = [
         'owner__following__followed__profile',
         'owner_followed_owner_profile',
+        'owner__course__course_title'
 
     ]
     ordering_fields = [
@@ -45,6 +48,8 @@ class ProfileList(generics.ListAPIView):
         # adding on how recent and how long they have beein following or followd
         'owner__following__created_at',
         'owner__followed__created_at',
+        'courses_count',
+
     ]
 
     serializer_class = ProfileSerializer
@@ -60,7 +65,10 @@ class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
         followers_count=Count('owner__followed', distinct=True),
         
         # the ones who is being followed by the owner
-        following_count=Count('owner__following', distinct=True)
+        following_count=Count('owner__following', distinct=True),
+
+        # annotate with count of enrolled courses
+        courses_count=Count('owner__course')
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
    

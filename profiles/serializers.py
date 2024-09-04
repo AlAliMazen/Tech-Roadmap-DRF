@@ -13,6 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     articles_count = serializers.ReadOnlyField()
     followers_count = serializers.ReadOnlyField()
     following_count = serializers.ReadOnlyField()
+    courses_count = serializers.ReadOnlyField()
     
 
     # add a field to tell if the logged in user is the owner of the profile
@@ -36,4 +37,4 @@ class ProfileSerializer(serializers.ModelSerializer):
         #fields = '__all__'
         fields = ['id','owner','is_owner','following_id','articles_count',
                   'following_count','nickname','about','created_at','updated_at',
-                  'image','followers_count']
+                  'image','followers_count','courses_count']
