@@ -12,6 +12,9 @@ With Tech-ROADMAP-DRF, users can navigate the often overwhelming array of IT dis
 
 In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to create a user-friendly backend system that not only delivers content but also fosters an interactive and supportive learning environment, making it an invaluable tool for aspiring IT professionals.
 
+- [Paste Your Document In Here](#paste-your-document-in-here)
+  * [And a table of contents](#and-a-table-of-contents)
+  * [On the right](#on-the-right)
 - [Tech-Roadmap-DRF,](#tech-roadmap-drf-)
 - [Planning](#planning)
   * [Objectives](#objectives)
@@ -21,16 +24,17 @@ In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to cre
   * [Entity Relational Diagram (ERD):](#entity-relational-diagram--erd--)
   * [Architecture](#architecture)
   * [Logic Through ERD](#logic-through-erd)
-    + [User MOdel](#user-model)
+    + [User Model](#user-model)
     + [Profile Model](#profile-model)
     + [Article Model](#article-model)
     + [Category Model](#category-model)
     + [Comment Model](#comment-model)
     + [Like Model](#like-model)
-    + [Follower Model Overview with Unique Constraint](#follower-model-overview-with-unique-constraint)
+    + [Follower Model Overview](#follower-model-overview)
     + [Course Model](#course-model)
     + [Review Model](#review-model)
     + [Rating Model Overview](#rating-model-overview)
+    + [Enrollment Model Overview](#enrollment-model-overview)
 - [API Endpoints](#api-endpoints)
 - [Frameworks, Libraries and Dependencies](#frameworks--libraries-and-dependencies)
 - [Testing](#testing)
@@ -112,9 +116,9 @@ The database schema is meticulously designed to optimize data storage, retrieval
 
 ## Entity Relational Diagram (ERD):
 
-In the Tech-ROADMAP-DRF API, the data architecture is built on a collection of interconnected models that work together to provide a seamless and interactive experience for users. These models are structured using Django's Models, ensuring a scalable and efficient system that supports various functionalities of the platform. I used [Qucik Database Diagram](https://app.quickdatabasediagrams.com/#/d/qGYihO) for normalizing these entities:
+In the Tech-ROADMAP-DRF API, the data architecture is built on a collection of interconnected models that work together to provide a seamless and interactive experience for users. These models are structured using Django's Models, ensuring a scalable and efficient system that supports various functionalities of the platform. I used [dbdiagram.io](https://dbdiagram.io/d) for normalizing these entities:
 
-![DRF_ERD_1](assets/READMEN/DRF_ERD_1.png)
+![ERD_Original](assets/READMEN/ERD_Original.png)
 
 ## Architecture
 
@@ -134,7 +138,7 @@ Users will be show all available courses filtered also based on the field of int
 
 **Following is a descritpion about the implemented Models**
 
-### User MOdel
+### User Model
 
 The User model in Django Rest Framework (DRF) is a core component of the authentication and user management system. It is based on Django's built-in User model, which is provided by the django.contrib.auth module. This model is essential for handling user authentication, permissions, and managing basic user information such as usernames, passwords, and email addresses.
 
@@ -270,7 +274,7 @@ The Like model is connected to both the User and Article models. When a user lik
 
 This model has a mechanism which let the user only put one like to a certain article. The line `unique_together = ['owner', 'article']`implies that the user can't like the same article twice. In fact, it has to do with the Data Integrity which will show a message indicating that the `possible duplication`are found meaning that one user can't like the same article twice. 
 
-### Follower Model Overview with Unique Constraint
+### Follower Model Overview
 
 The Follower model allows users on the Tech-ROADMAP-DRF platform to follow other users. This feature helps users stay connected and engaged by keeping track of activities and content shared by those they follow.
 
@@ -377,3 +381,28 @@ The Rating model is designed to capture user ratings for courses within the Tech
 **Relation to the User and Course Models**
 
 The Rating model is linked to the User model, allowing users to rate the courses they have taken. The unique constraint ensures that each user can provide only one rating per course, which helps maintain a fair and accurate system of course evaluation. By aggregating these ratings, the platform can offer insights into the overall quality and user satisfaction of each course, aiding future users in making informed decisions about their learning paths.
+
+
+### Enrollment Model Overview
+
+The `Enrollment` model is used to represent the relationship between a user and the courses they have enrolled in. It links a user (represented by the `owner` field) to a course (represented by the `course` field). The courses are defined as choices from the `AVAILABLE_COURSES` tuple, which maps course IDs to their respective names.
+
+**Key Features:**
+1. **One Enrollment Per User Per Course**: 
+   - The `unique_together = ('owner', 'course')` constraint in the `Meta` class ensures that a user can only enroll in a specific course once. **This prevents duplicate enrollments.**
+   
+2. **Timestamp Management**:
+   - The model includes `created_at` and `updated_at` fields to track when the enrollment record is created and last updated. Both fields use `auto_now_add=True`, which automatically assigns the current timestamp.
+
+3. **Ordering by Recent Activity**:
+   - The `ordering = ['-created_at']` ensures that enrollment records are ordered with the most recent enrollments shown first.
+
+4. **Human-Readable String Representation**:
+   - The `__str__` method returns a readable string showing the username and the corresponding course ID, which can be enhanced to display the course title if necessary.
+
+**Relationships:**
+1. **User Profile** (`owner`):
+   - The `owner` field creates a `ForeignKey` relationship to Django's built-in `User` model. This links each enrollment to a specific user, establishing a **many-to-one** relationship where each user can have multiple enrollments, but each enrollment belongs to one user.
+   
+2. **Course** (`course`):
+   - The `course` field uses an integer choice from the `AVAILABLE_COURSES` tuple to map each enrollment to a specific course. Although it stores only the course ID, the `get_course_display()` method (provided by Django) can be used to retrieve the human-readable course title. Each enrollment corresponds to exactly one course, creating an indirect **many-to-one** relationship between users and courses.
