@@ -11,8 +11,10 @@ class EnrollmentSerializer(serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
-    course_title = course_title = serializers.SerializerMethodField()
-
+    course_title = serializers.SerializerMethodField()
+    
+    course = serializers.ChoiceField(choices=AVAILABLE_COURSES)
+    
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
@@ -22,12 +24,20 @@ class EnrollmentSerializer(serializers.ModelSerializer):
     
     def get_updated_at(self, obj):
         return naturaltime(obj.updated_at)
-
+   
     def get_course_title(self, obj):
-       return obj.get_title_display()
-    
+        return obj.get_course_display()  # This gets the human-readable course title
 
     class Meta:
         model = Enrollment
         fields = '__all__'
     
+    def create(self, validated_data):
+        try:
+            # create is a method in the super (parent class of ModeSerializer)
+            # that is why we have to use super 
+            return super().create(validated_data)
+        except IntegrityError:
+            raise serializers.ValidationError({
+                'detail': "possible duplicate - You can't enroll in the same course twice"
+            })

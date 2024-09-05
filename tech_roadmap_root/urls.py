@@ -37,4 +37,5 @@ urlpatterns = [
     path('', include('course.urls')),
     path('', include('review.urls')),
     path('', include('rating.urls')),
+    path('', include('enrollment.urls')),
 ]
