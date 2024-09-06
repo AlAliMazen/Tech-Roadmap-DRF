@@ -14,10 +14,10 @@ class CourseSerializer(serializers.ModelSerializer):
     course_title = serializers.SerializerMethodField()
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
-    enrollment_id = serializers.SerializerMethodField()
+    #enrollment_id = serializers.SerializerMethodField()
     reviews_count = serializers.ReadOnlyField()
     ratings_count = serializers.ReadOnlyField()
-    #enrollments_count = serializers.ReadOnlyField()
+    enrollments_count = serializers.ReadOnlyField()
 
     # common convension is to call validate_[name_of_field]
     def validate_image(self, value):
