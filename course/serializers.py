@@ -2,6 +2,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.db import IntegrityError
 from rest_framework import serializers
 from .models import Course
+from enrollment.models import Enrollment
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -13,7 +14,7 @@ class CourseSerializer(serializers.ModelSerializer):
     course_title = serializers.SerializerMethodField()
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
-    
+    enrollment_id = serializers.SerializerMethodField()
     reviews_count = serializers.ReadOnlyField()
     ratings_count = serializers.ReadOnlyField()
     enrollments_count = serializers.ReadOnlyField()
@@ -47,13 +48,24 @@ class CourseSerializer(serializers.ModelSerializer):
     def get_course_title(self, obj):
        return obj.get_title_display()
     
+    def get_enrollment_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            like = Enrollment.objects.filter(
+                owner = user, course = obj
+            ).first()
+
+            print(like)
+            return Enrollment.id if Enrollment else None
+        return None
+    
     class Meta:
         model = Course
         
         fields = ['id','owner','profile_id','profile_image','category_title',
                   'title','about','created_at','updated_at','duration',
                   'thumbnailImage','category','course_title','is_owner','reviews_count',
-                  'ratings_count','enrollments_count']
+                  'ratings_count','enrollments_count','enrollment_id']
     
     
     
