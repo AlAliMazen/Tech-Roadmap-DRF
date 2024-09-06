@@ -24,7 +24,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         return naturaltime(obj.updated_at)
     
     def get_course_title(self, obj):
-        return obj.get_course_display()
+        return obj.course.get_title_display()
         
     
     class Meta:

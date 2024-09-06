@@ -1,7 +1,6 @@
-from rest_framework import generics, permissions,filters, status
-from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, permissions,filters
 from django.db.models import Count
-from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 from tech_roadmap_root.permissions import IsOwnerOrReadOnly
 from .models import Course
 from .serializers import CourseSerializer
@@ -13,10 +12,21 @@ class CourseList(generics.ListCreateAPIView):
     """
     serializer_class = CourseSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Course.objects.all()
+    queryset = Course.objects.annotate(
+        reviews_count=Count('reviews',distinct=True),
+        ratings_count=Count('ratings', distinct=True),
+        enrollments_count=Count('enrollments',distinct=True)
+    ).order_by('-created_at')
 
-    filter_backends =[
-        DjangoFilterBackend
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+    ordering_fields = [
+        'reviews_count',
+        'ratings_count',
+        'enrollments_count',
     ]
 
     def perform_create(self, serializer):

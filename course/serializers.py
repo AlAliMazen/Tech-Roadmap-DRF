@@ -13,6 +13,10 @@ class CourseSerializer(serializers.ModelSerializer):
     course_title = serializers.SerializerMethodField()
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
+    
+    reviews_count = serializers.ReadOnlyField()
+    ratings_count = serializers.ReadOnlyField()
+    enrollments_count = serializers.ReadOnlyField()
 
     # common convension is to call validate_[name_of_field]
     def validate_image(self, value):
@@ -48,7 +52,8 @@ class CourseSerializer(serializers.ModelSerializer):
         
         fields = ['id','owner','profile_id','profile_image','category_title',
                   'title','about','created_at','updated_at','duration',
-                  'thumbnailImage','category','course_title','is_owner']
+                  'thumbnailImage','category','course_title','is_owner','reviews_count',
+                  'ratings_count','enrollments_count']
     
     
     

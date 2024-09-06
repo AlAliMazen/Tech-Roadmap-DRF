@@ -37,4 +37,4 @@ class Course(models.Model):
         unique_together = ['owner', 'title']
     
     def __str__(self):
-        return f"{self.id} {self.title}  {self.owner}  {self.category}"
+        return f"{self.id} {self.get_title_display()}"

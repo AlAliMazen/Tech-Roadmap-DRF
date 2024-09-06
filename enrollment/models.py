@@ -9,7 +9,8 @@ class Enrollment(models.Model):
     Each user can only enroll in a specific course once.
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    course = models.IntegerField(choices=AVAILABLE_COURSES)
+    #course = models.IntegerField(choices=AVAILABLE_COURSES)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollments')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     class Meta:

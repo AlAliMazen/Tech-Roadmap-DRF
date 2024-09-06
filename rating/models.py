@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.contrib.auth.models import User
-from course.models import AVAILABLE_COURSES
+from course.models import Course, AVAILABLE_COURSES
 
 # Create your models here.
 
@@ -12,7 +12,8 @@ class Rating(models.Model):
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # Direct reference to AVAILABLE_COURSES
-    course = models.IntegerField(choices=AVAILABLE_COURSES)  
+    #course = models.IntegerField(choices=AVAILABLE_COURSES)  
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='ratings')
     rating = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

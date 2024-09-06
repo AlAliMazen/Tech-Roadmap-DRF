@@ -8,7 +8,7 @@ class Review(models.Model):
     Used to store user reviews of a course.
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    course = models.IntegerField(choices=AVAILABLE_COURSES)  # Direct reference to AVAILABLE_COURSES
+    course = models.ForeignKey(Course,related_name="reviews",on_delete=models.CASCADE)  # Direct reference to AVAILABLE_COURSES
     content = models.TextField(blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

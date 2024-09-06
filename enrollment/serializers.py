@@ -13,7 +13,7 @@ class EnrollmentSerializer(serializers.ModelSerializer):
     updated_at = serializers.SerializerMethodField()
     course_title = serializers.SerializerMethodField()
     
-    course = serializers.ChoiceField(choices=AVAILABLE_COURSES)
+    #course = serializers.ChoiceField(choices=AVAILABLE_COURSES)
     
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -26,7 +26,7 @@ class EnrollmentSerializer(serializers.ModelSerializer):
         return naturaltime(obj.updated_at)
    
     def get_course_title(self, obj):
-        return obj.get_course_display()  # This gets the human-readable course title
+        return obj.course.get_title_display() 
 
     class Meta:
         model = Enrollment
