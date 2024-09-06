@@ -18,4 +18,4 @@ class Review(models.Model):
         unique_together = ['owner', 'course']  # Ensure a user can only review a course once
 
     def __str__(self):
-        return f"{self.owner.username} reviewed {self.get_course_display()} - {self.content[:50]}"
+        return f"{self.owner.username} reviewed {self.course.get_title_display()} - {self.content[:50]}"

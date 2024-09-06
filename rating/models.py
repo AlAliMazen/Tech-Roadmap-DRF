@@ -23,4 +23,4 @@ class Rating(models.Model):
         # Ensure a user can only rate a course once
         unique_together = ['owner', 'course'] 
     def __str__(self):
-        return f"{self.owner.username} rated {self.get_course_display()} - {self.rating}"
+        return f"{self.owner.username} rated {self.course.get_title_display()} - {self.rating}"
