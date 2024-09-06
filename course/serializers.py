@@ -17,7 +17,7 @@ class CourseSerializer(serializers.ModelSerializer):
     enrollment_id = serializers.SerializerMethodField()
     reviews_count = serializers.ReadOnlyField()
     ratings_count = serializers.ReadOnlyField()
-    enrollments_count = serializers.ReadOnlyField()
+    #enrollments_count = serializers.ReadOnlyField()
 
     # common convension is to call validate_[name_of_field]
     def validate_image(self, value):
@@ -48,16 +48,14 @@ class CourseSerializer(serializers.ModelSerializer):
     def get_course_title(self, obj):
        return obj.get_title_display()
     
-    def get_enrollment_id(self, obj):
-        user = self.context['request'].user
-        if user.is_authenticated:
-            like = Enrollment.objects.filter(
-                owner = user, course = obj
-            ).first()
-
-            print(like)
-            return Enrollment.id if Enrollment else None
-        return None
+    #def get_enrollment_id(self, obj):
+    #    user = self.context['request'].user
+    #    if user.is_authenticated:
+    #        like = Enrollment.objects.filter(
+    #            owner = user, course = obj
+    #        ).first()
+    #        return Enrollment.id if Enrollment else None
+    #    return None
     
     class Meta:
         model = Course
@@ -65,7 +63,7 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = ['id','owner','profile_id','profile_image','category_title',
                   'title','about','created_at','updated_at','duration',
                   'thumbnailImage','category','course_title','is_owner','reviews_count',
-                  'ratings_count','enrollments_count','enrollment_id']
+                  'ratings_count','enrollments_count']
     
     
     
