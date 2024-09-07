@@ -43,4 +43,8 @@ class CourseDetail(generics.RetrieveDestroyAPIView):
 
     # Serializer for getting the exact comment to the article
     serializer_class = CourseSerializer
-    queryset = Course.objects.all()
+    queryset = Course.objects.annotate(
+        reviews_count=Count('reviews',distinct=True),
+        ratings_count=Count('ratings', distinct=True),
+        enrollments_count=Count('enrollments',distinct=True)
+    ).order_by('-created_at')
