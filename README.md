@@ -406,3 +406,66 @@ The `Enrollment` model is used to represent the relationship between a user and 
    
 2. **Course** (`course`):
    - The `course` field uses an integer choice from the `AVAILABLE_COURSES` tuple to map each enrollment to a specific course. Although it stores only the course ID, the `get_course_display()` method (provided by Django) can be used to retrieve the human-readable course title. Each enrollment corresponds to exactly one course, creating an indirect **many-to-one** relationship between users and courses.
+
+# API Endpoints
+
+Still to do
+
+
+# Framework ,Libraries and Dependencies
+
+The tech-roadmap project is built on a solid foundation provided by the Django web framework. Django's high-level architecture and robust features streamline development, provides me with a rich and intuitive user experience to build a full API that can be deployed by many different frontend applications. 
+
+During the Project and the walkthrough provided by **Code Institute** I have used and installed the following extensions and libraries.
+
+**Important to note** 
+
+The exact version of the following library or extension can be seen under the requirements.txt file which is served in the Repo of this project.
+
+## Django Framework and Extensions
+
+* **Django REST Framework:** This toolkit empowers us to build powerful and flexible Web APIs, providing essential features like serialization, authentication, and views.
+
+* **Django Allauth:** Simplifying authentication, registration, and account management, Django Allauth ensures a seamless user experience.
+
+* **Django REST Auth:** Designed to handle user registration and authentication tasks within REST APIs, Django REST Auth.
+
+* **Django Filter:** Streamlining the process of filtering querysets, Django Filter enhances the flexibility and efficiency of the API endpoints.
+
+* **Django CORS Headers:** Addressing Cross-Origin Resource Sharing (CORS) requirements, Django CORS Headers ensures compatibility between our API and different client-side applications.
+
+## Database Management
+
+**Database Configuration and Connection**
+
+To simplify database configuration and management, **Code Institute** recommends to use the following tools:
+
+* **dj-database-url:** This library enables us to use the `DATABASE_URL` environment variable to dynamically configure our Django application's database connection. This approach promotes flexibility and simplifies deployment across different environments `Deployment on Heroku` needs this!.
+
+* **psycopg2:** As the PostgreSQL database adapter for Python, psycopg2 provides an efficient interface for interacting with our PostgreSQL database.
+
+## Authentication and Security
+
+To ensure secure and efficient authentication and authorization, we've implemented the following tools:
+
+* **djangorestframework-simplejwt:** This library provides JSON Web Token (JWT) authentication for Django REST Framework, offering a secure and flexible mechanism for authenticating API requests.
+* **oauthlib:** A generic, spec-compliant library, oauthlib provides the OAuth request-signing logic, enabling us to implement OAuth-based authentication and authorization flows.
+* **requests-oauthlib:** Integrating OAuthlib with the popular `requests` library, requests-oauthlib simplifies the process of making OAuth-authenticated HTTP requests within our application.
+
+## Application Server
+
+**Production Deployment**
+
+To serve our Django application in a production environment, we've chosen the following application server:
+
+* **gunicorn:** A highly efficient and scalable Python WSGI HTTP server, gunicorn is well-suited for handling production workloads. It provides robust features like worker processes, process management, and configuration options, ensuring optimal performance and reliability.
+
+
+# Testing
+ ## Manuel Testing
+# Python Validation
+# Bugs
+## Unresolved Bugs
+## Resolved Bugs
+# Deployment
+# Credits
