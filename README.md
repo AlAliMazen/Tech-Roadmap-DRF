@@ -446,7 +446,6 @@ tech-Roadmap-DRF APi offeres the following endpoiint to achieve the CRUD (Create
 
 ### Profiles endpoints:
 
-## Profile Model
 
 | Endpoint | Functionality |
 |---|---|
@@ -598,6 +597,27 @@ To serve our Django application in a production environment, we've chosen the fo
 # Testing
  ## Manuel Testing
 # Python Validation
+## What to validate
+
+Validating the implemente code is an essential part in writing an API. It proves to the client or all user who will need ti deploy this provided code, that this synax are **valid, secur and well structured**
+
+For Validation of my code in this project I have used [Python-validator-by-Code-Institute](https://pep8ci.herokuapp.com).
+
+In every Model, I will validate the code which I have written in the models.py , admin.py , serializers.py, views.py and urls.py
+
+### Profiles App
+### Article App
+### Comment App
+### Likes App
+### Followers App
+### Category App
+### Course App
+### Review App
+### Rating App
+### Enrollment App
+
+
+
 # Bugs
 ## Unresolved Bugs
 ## Resolved Bugs

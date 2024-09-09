@@ -1,4 +1,5 @@
 from django.contrib.humanize.templatetags.humanize import naturaltime
+from django.db import IntegrityError
 from rest_framework import serializers
 from review.models import Review
 from course.models import AVAILABLE_COURSES
@@ -30,6 +31,16 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = '__all__'
+    
+    def create(self, validated_data):
+        try:
+            # create is a method in the super (parent class of ModeSerializer)
+            # that is why we have to use super 
+            return super().create(validated_data)
+        except IntegrityError:
+            raise serializers.ValidationError({
+                'detail': "possible duplicate - You can't write two reviews to the same course. Try to update your first review"
+            })
 
 
 
