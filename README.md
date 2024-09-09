@@ -11,10 +11,6 @@ The primary purpose of Tech-ROADMAP-DRF is to demystify the IT landscape for new
 With Tech-ROADMAP-DRF, users can navigate the often overwhelming array of IT disciplines—whether it's programming, cybersecurity, data science, or cloud computing—and find a clear, structured path to follow. By offering personalized course recommendations based on user preferences and progress, the project aims to create a tailored learning experience that empowers individuals to confidently embark on their IT journey.
 
 In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to create a user-friendly backend system that not only delivers content but also fosters an interactive and supportive learning environment, making it an invaluable tool for aspiring IT professionals.
-
-- [Paste Your Document In Here](#paste-your-document-in-here)
-  * [And a table of contents](#and-a-table-of-contents)
-  * [On the right](#on-the-right)
 - [Tech-Roadmap-DRF,](#tech-roadmap-drf-)
 - [Planning](#planning)
   * [Objectives](#objectives)
@@ -36,17 +32,36 @@ In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to cre
     + [Rating Model Overview](#rating-model-overview)
     + [Enrollment Model Overview](#enrollment-model-overview)
 - [API Endpoints](#api-endpoints)
-- [Frameworks, Libraries and Dependencies](#frameworks--libraries-and-dependencies)
+  * [Overview](#overview)
+  * [Available Endpoints](#available-endpoints)
+    + [Profiles endpoints:](#profiles-endpoints-)
+  * [Profile Model](#profile-model-1)
+    + [Article Model](#article-model-1)
+    + [Likes Model](#likes-model)
+    + [Follower Model](#follower-model)
+    + [Comment Model](#comment-model-1)
+    + [Category Model](#category-model-1)
+    + [Course Model](#course-model-1)
+    + [Review Model](#review-model-1)
+    + [Rating Model](#rating-model)
+    + [Enrollment Endpoints](#enrollment-endpoints)
+    + [Administration and Authorisation](#administration-and-authorisation)
+- [Framework ,Libraries and Dependencies](#framework--libraries-and-dependencies)
+  * [Django Framework and Extensions](#django-framework-and-extensions)
+  * [Database Management](#database-management)
+  * [Authentication and Security](#authentication-and-security)
+  * [Application Server](#application-server)
 - [Testing](#testing)
   * [Manuel Testing](#manuel-testing)
-  * [Python Validation](#python-validation)
-  * [Bugs](#bugs)
-    + [Unresolved Bugs](#unresolved-bugs)
-    + [Resolved Bugs](#resolved-bugs)
+- [Python Validation](#python-validation)
+- [Bugs](#bugs)
+  * [Unresolved Bugs](#unresolved-bugs)
+  * [Resolved Bugs](#resolved-bugs)
 - [Deployment](#deployment)
 - [Credits](#credits)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 # Planning
 
@@ -409,7 +424,126 @@ The `Enrollment` model is used to represent the relationship between a user and 
 
 # API Endpoints
 
-Still to do
+## Overview
+
+API endpoints serve as the entry points for interacting with your application's functionality through HTTP requests. They define the specific URLs and HTTP methods (GET, POST, PUT, DELETE, etc.) that clients can use to access and manipulate data.
+
+**Why Use API Endpoints?**
+
+* **Flexibility:** API endpoints provide a flexible way to expose your application's functionality to a variety of clients, including web applications, mobile apps, and other external systems.
+* **Scalability:** Well-designed API endpoints can be scaled to handle increasing workloads and accommodate future growth.
+* **Integration:** APIs enable seamless integration with other systems and services, allowing for data exchange and collaboration.
+
+**When to Use API Endpoints**
+
+* **Exposing Application Data:** When you need to provide access to your application's data to external clients or systems.
+* **Building Web Services:** When you want to create reusable services that can be consumed by other applications.
+* **Integrating with Third-Party Systems:** When you need to interact with external APIs or services.
+
+## Available Endpoints
+
+tech-Roadmap-DRF APi offeres the following endpoiint to achieve the CRUD (Create, Read, Update and Delete)functinalities. Besides I have enable the **Admin** access panel to give users the possibility to manage the data from all the installed apps (models) from the backend. ONLY SUPER USERS CAN ACCESS THE ADMIN PANEL!
+
+### Profiles endpoints:
+
+## Profile Model
+
+| Endpoint | Functionality |
+|---|---|
+| `profiles/` | Retrieves a list of all profiles. |
+| `profiles/<int:pk>/` | Retrieves a specific profile based on its primary key (PK). |
+| `profiles/<int:pk>/delete/` | Deletes a specific profile based on its primary key. |
+
+**NOTE**:
+**`profiles/<int:pk>/delete/`: This endpoint is used to delete a specific profile based on its primary key. The ProfileDetail view handles the request and deletes the profile.**
+
+
+### Article Model
+
+
+| Endpoint | Functionality |
+|---|---|
+| `articles/` | **Create:** Use the `POST` method to create a new article. **Retrieve:** Use the `GET` method to retrieve a list of all articles. |
+| `articles/<int:pk>/` | **Retrieve:** Use the `GET` method to retrieve a specific article based on its primary key (PK). **Update:** Use the `PUT` or `PATCH` method to update the details of a specific article. **Delete:** Use the `DELETE` method to delete a specific article. |
+
+### Likes Model
+
+| Endpoint | Functionality |
+|---|---|
+| `likes/` | **Create:** Use the `POST` method to create a new like. **Retrieve:** Use the `GET` method to retrieve a list of all likes. |
+| `likes/<int:pk>/` | **Retrieve:** Use the `GET` method to retrieve a specific like based on its primary key (PK). **Update:** Use the `PUT` or `PATCH` method to update the details of a specific like (e.g., change the like status). **Delete:** Use the `DELETE` method to delete a specific like. |
+
+
+### Follower Model
+
+| Endpoint | Functionality |
+|---|---|
+| `followers/` | **Create:** Use the `POST` method to create a new follower relationship. **Retrieve:** Use the `GET` method to retrieve a list of all followers for a specific user. |
+| `followers/<int:pk>/` | **Retrieve:** Use the `GET` method to retrieve a specific follower relationship based on its primary key (PK). **Delete:** Use the `DELETE` method to delete a specific follower relationship. |
+
+
+**Note:** While there might not be a direct update mechanism for follower relationships, you could implement other ways to manage them, such as using a boolean field to indicate if a follower is "active" or "inactive."
+
+
+### Comment Model
+
+| Endpoint | Functionality |
+|---|---|
+| `comments/` | **Create:** Create a new comment, associating it with a specific article or post. **Retrieve:** Get a list of all comments related to a particular article or post. |
+| `comments/<int:pk>/` | **Retrieve:** Get a specific comment based on its primary key (PK). **Update:** Modify the content of a specific comment. **Delete:** Remove a specific comment. |
+
+
+### Category Model
+
+| Endpoint | Functionality |
+|---|---|
+| `category/` | **Create:** Create a new category. **Retrieve:** Get a list of all categories. |
+| `category/<int:pk>/` | **Retrieve:** Get a specific category based on its primary key (PK). **Update:** Modify the details of a specific category (e.g., change the category name or description). **Delete:** Remove a specific category. |
+
+### Course Model
+
+| Endpoint | Functionality |
+|---|---|
+| `courses/` | **Create:** Create a new course. **Retrieve:** Get a list of all courses. |
+| `courses/<int:pk>/` | **Retrieve:** Get a specific course based on its primary key (PK). **Update:** Modify the details of a specific course (e.g., change the course name, description). **Delete:** Remove a specific course. |
+
+
+### Review Model
+
+| Endpoint | Functionality |
+|---|---|
+| `reviews/` | **Create:** Create a new review, associating it with a specific course . **Retrieve:** Get a list of all reviews for a particular course . |
+| `reviews/<int:pk>/` | **Retrieve:** Get a specific review based on its primary key (PK). **Update:** Modify the content or rating of a specific review. **Delete:** Remove a specific review. |
+
+
+### Rating Model
+
+| Endpoint | Functionality |
+|---|---|
+| `ratings/` | **Create:** Create a new rating, associating it with a specific course . **Retrieve:** Get a list of all ratings for a particular course. |
+| `ratings/<int:pk>/` | **Retrieve:** Get a specific rating based on its primary key (PK). **Update:** Modify the rating value for a specific rating. **Delete:** Remove a specific rating. |
+
+
+### Enrollment Endpoints
+
+| Endpoint | Functionality |
+|---|---|
+| `enrollments/` | **Create:** Create a new enrollment, associating it with a specific user and course. **Retrieve:** Get a list of all enrollments for a particular user or course. |
+| `enrollments/<int:pk>/` | **Retrieve:** Get a specific enrollment based on its primary key (PK). **Update:** Modify the details of a specific enrollment (e.g., change the enrollment status or completion date). **Delete:** Remove a specific enrollment. |
+
+
+### Administration and Authorisation
+
+| Endpoint | Functionality |
+|---|---|
+| `/` | This path  points to a landing view function that serves as the root of tech-roadmap-drf API.  |
+| `/admin/` | Django admin panel for managing your application's data models. |
+| `/api-auth/` | Authentication and authorization endpoints provided by Django REST Framework. |
+| `/dj-rest-auth/logout/` | Custom logout route (in most cases, it is defined in `logout_route`). |
+| `/dj-rest-auth/` | Endpoints for user registration, login, password reset, etc., provided by django-rest-auth. |
+| `/dj-rest-auth/registration/` | Endpoints specifically for user registration, managed by django-rest-auth. |
+
+
 
 
 # Framework ,Libraries and Dependencies
