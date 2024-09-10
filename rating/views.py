@@ -15,7 +15,7 @@ class RatingList(generics.ListCreateAPIView):
     queryset = Rating.objects.all()
 
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['course']  # Filter ratings by course
+    filterset_fields = ['course', 'owner']
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
