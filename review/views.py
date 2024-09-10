@@ -14,6 +14,11 @@ class ReviewList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Review.objects.all()
 
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['course']  # Allows filtering reviews by course
+    ordering_fields = ['created_at']
+
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 

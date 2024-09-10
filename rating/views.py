@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions,filters
+from django_filters.rest_framework import DjangoFilterBackend
 from tech_roadmap_root.permissions import IsOwnerOrReadOnly
 from .models import Rating
 from .serializers import RatingSerializer
@@ -12,6 +13,9 @@ class RatingList(generics.ListCreateAPIView):
     serializer_class = RatingSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Rating.objects.all()
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['course']  # Filter ratings by course
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
