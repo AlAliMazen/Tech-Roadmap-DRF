@@ -15,7 +15,7 @@ class ReviewList(generics.ListCreateAPIView):
     queryset = Review.objects.all()
 
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['course']  # Allows filtering reviews by course
+    filterset_fields = ['course', 'owner']
     ordering_fields = ['created_at']
 
 
