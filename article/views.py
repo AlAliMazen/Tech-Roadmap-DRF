@@ -12,7 +12,7 @@ class ArticleList(generics.ListCreateAPIView):
     """
     serializer_class = ArticleSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    
+
     queryset = Article.objects.annotate(
         likes_count=Count('likes', distinct=True),
         comments_count=Count('comment', distinct=True)

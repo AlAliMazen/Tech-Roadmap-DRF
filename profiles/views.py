@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.db.models import Count
-from rest_framework import generics,filters, status
+from rest_framework import generics, filters, status
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import render
 from rest_framework.views import APIView
@@ -21,9 +21,10 @@ class ProfileList(generics.ListAPIView):
         articles_count=Count('owner__article', distinct=True),
         # the ones who follow the profile owner
         followers_count=Count('owner__followed', distinct=True),
-        
+
         # the ones who is being followed by the owner
         following_count=Count('owner__following', distinct=True),
+
         # Annotate with the count of enrolled courses
         courses_count=Count('owner__course', distinct=True)
     ).order_by('-created_at')
@@ -44,15 +45,13 @@ class ProfileList(generics.ListAPIView):
         'articles_count',
         'followers_count',
         'following_count',
-
-        # adding on how recent and how long they have beein following or followd
         'owner__following__created_at',
         'owner__followed__created_at',
         'courses_count',
-
     ]
 
     serializer_class = ProfileSerializer
+
 
 class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -63,7 +62,7 @@ class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
         articles_count=Count('owner__article', distinct=True),
         # the ones who follow the profile owner
         followers_count=Count('owner__followed', distinct=True),
-        
+
         # the ones who is being followed by the owner
         following_count=Count('owner__following', distinct=True),
 
@@ -71,4 +70,3 @@ class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
         courses_count=Count('owner__course')
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
-   
