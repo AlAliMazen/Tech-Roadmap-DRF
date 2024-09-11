@@ -74,7 +74,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 #DEBUG = 'DEV' in os.environ
 #DEBUG = True
 
-ALLOWED_HOSTS = [ os.environ.get('ALLOWED_HOST'), '127.0.0.1',"https://3000-alalimazen-techroadmap-g33dcy9503x.ws.codeinstitute-ide.net/"]
+ALLOWED_HOSTS = [ os.environ.get('ALLOWED_HOST'), '127.0.0.1',"3000-alalimazen-techroadmap-g33dcy9503x.ws.codeinstitute-ide.net/"]
 
 
 # Application definition
