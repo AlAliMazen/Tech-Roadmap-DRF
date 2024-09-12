@@ -838,5 +838,80 @@ In every Model, I will validate the code which I have written in the models.py ,
 
 # Deployment
 
+Deploying **Tec-Roadmap-DRF** involves setting up the necessary infrastructure to host the Django REST Framework (DRF) application in a production environment. This process includes configuring the server, managing static and media files, setting environment variables, and securing the application. The deployment can be done on various platforms, including cloud services like AWS, Heroku, or DigitalOcean, or on a dedicated server.
+
+The deployment process ensures that the API is accessible over the internet, securely handles user requests, and efficiently serves data to the frontend or other client applications.
+
+Before starting, ensure that all dependencies are properly installed and the necessary configurations are made for a smooth deployment.
+
+## GitHub :
+
+I have used [Code-institute-Org/ci-full-template](https://github.com/Code-Institute-Org/ci-full-template) for initialising a repositoy and be the versioning system
+
+## CI-Gitpod:
+
+The Code Institute offeres students who are enrolled in the course an unlimited usage of online IDE (integrated Development Environment) that is GitPod which allows students to create a new workingspace and clone the repository. The advantage of using CI-GitPod is that it is cloud based and used by tutoring support when there is any technicla problem becuase it can be shared with the assistance team. Lastly, it comes with preconfigured dependencies and very user friendly (very similar to VS code but cloud based).
+
+## HEROKU:
+
+**You need to set up an account n a cloud based platform to make use of any API** We are recommended to use HEROKU (which is a PaaS platform as a Service) and you can follow the steps listed below to to deploy your API
+
+1. Go to [HEROKU](https://dashboard.heroku.com/) and log in to your account.
+2. Create a new APP: on the upper right corner, you can find a button and choose to create a new APP.
+
+![new-APP-on-HEROKU](assets/READMEN/Screenshot%202024-09-12%20at%2010.45.52.png)
+
+3. Connect to GitHub: under the **Deploy** menu, choose GitHub for where your API-Repo lives. **Deployment method** is listed on the left hand side.
+
+4. Connect to the API Repo: when you are connected to your GitHub you can look for the project you created on GitHub for your API version. 
+
+5. Automatic Deploys: you can choose to activate the automatic deployment of your project meaning that whenever you push your code, HEROKU will start deployment process automatically.
+
+6. Manual Deploy: the branch is important to set here as source for the deployment and there is a button **Deploy Branch**  which is used only when you want to manuelly force the HEROKU to deploy and build a version of the API.
+
+7. Settings: Under the settings you have to set three **Config-vars** 
+   - **DATABASE_URL**: As for me I have set up a database on PostgrSQL as recommended by Code-Institute and got a link from for it to use it here.
+
+   - **CLOUDINARY_URL**: it is used to host all your media files which are things like photos and videos 
+
+   - **SECRET_KEY**: This is unique to every project and going to be creatd when you set a DJANGO project lives in the settings.py .
+
+   **WHAT ABOUT ALLOWED_HOST** 
+
+   This project is hosted on HEROKU and that is why **.heroku.com** needs to be in the alloed hosts in the settings.py file. If you need to host your project on other platforms, then you need to read the documentation closely to see how to set the configuration for hosting your version of the API. 
+
+8. Go back to **Deploy** menu item and scroll down to the **deploy Branch** and click it.
+
+9. Click on view build logs to see how HEROKU installs all the required packages for deployment.
+
+10. When buidling is done, you can click on the **Open App** to view the public accessible link from the API. 
+
+The Link is considered to be the base URL for the API and should be used in any front end application which needs to make use of it.
+
+**For deployment HEROKU needs two additional files in order to deploy properly**
+
+   - requirements.txt
+   - Procfile
+You can install this project's requirements using the following command:
+
+**pip3 install -r requirements.txt**
+
+If you have your own packages that have been installed, then the requirements file needs updated as well. The following command is used to updae the requirements.txt 
+
+**pip3 freeze --local > requirements.txt**
+
+The Procfile can be created with the following command (on mac)
+
+In the root project directory:
+
+   `touch  Procfile`
+
+Inside the the Procfile you need to use the following command 
+
+   `web: gunicorn [NAME_OF_YOUR_APP].wsgi``
+
+
 
 # Credits
+
+
