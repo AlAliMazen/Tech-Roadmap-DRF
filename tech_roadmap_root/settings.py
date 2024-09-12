@@ -133,7 +133,8 @@ if 'CLIENT_ORIGIN' in os.environ:
          os.environ.get('CLIENT_ORIGIN')
      ]
 else:
-     CORS_ALLOWED_ORIGIN_REGEXES = [r'^https://.*\.gitpod\.io$',]
+    #CORS_ALLOWED_ORIGIN_REGEXES = [r'^https://.*\.gitpod\.io$',]
+    CORS_ALLOWED_ORIGIN_REGEXES = [r'^https://.*\.codeinstitute-ide\.net$',]
 
 # CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = [

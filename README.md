@@ -1021,4 +1021,4 @@ Writing the code of Tech-Road-DRF as an API has been a rewarding journey, and I 
 
 - Code Institute tutoring support
 
-- COde Institute Student Care
+- Code Institute Student Care
