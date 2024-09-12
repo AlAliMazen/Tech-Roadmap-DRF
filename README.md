@@ -603,23 +603,240 @@ Validating the implemente code is an essential part in writing an API. It proves
 
 For Validation of my code in this project I have used [Python-validator-by-Code-Institute](https://pep8ci.herokuapp.com).
 
-In every Model, I will validate the code which I have written in the models.py , admin.py , serializers.py, views.py and urls.py
+In every Model, I will validate the code which I have written in the models.py , serializers.py ,admin.py, urls.py and views.py
 
 ### Profiles App
+
+**Profiles Model**
+
+![py-val-profile-model](assets/READMEN/PY_VAL_3_profile_model.png)
+
+
+
+**Profiles Serializer**
+
+![py-val-profile-serializer](assets/READMEN/PY_VAL_4_profile_serilaizer.png)
+
+**Profiles Admin**
+
+![py-val-profile-admin](assets/READMEN/PY_VAL_6_profile_admin.png)
+
+**Profiles Urls**
+
+![py-val-profile-urls](assets/READMEN/PY_VAL_7_profile_urls.png)
+
+**Profiles Views**
+
+![py-val-profile-urls](assets/READMEN/PY_VAL_48_profile_views.png)
+
+
 ### Article App
+
+**Article Model**
+
+![py-val-article-model](assets/READMEN/PY_VAL_47_article_model.png)
+
+**Article Serializer**
+
+![py-val-article-serilaizer](assets/READMEN/PY_VAL_8_article_serializer.png)
+
+**Article Admin**
+
+![py-val-article-admin](assets/READMEN/PY_VAL_10_article_admin.png)
+
+**Article Urls**
+
+![py-val-article-urls](assets/READMEN/PY_VAL_11_article_urls.png)
+
+**Article Views**
+
+![py-val-article-urls](assets/READMEN/PY_VAL_9_articl_view.png)
+
 ### Comment App
+
+**Comment Model**
+
+![py-val-comment-model](assets/READMEN/PY_VAL_12_comment_model.png)
+
+**Comment Serializer**
+
+![py-val-comment-serializer](assets/READMEN/PY_VAL_13_comment_serializer.png)
+
+**Comment Admin**
+
+![py-val-comment-admin](assets/READMEN/PY_VAL_14_comment_admin.png)
+
+**Comment Urls**
+
+![py-val-comment-urls](assets/READMEN/PY_VAL_15_comment_urls.png)
+
+**Comment Views**
+
+![py-val-comment-views](assets/READMEN/PY_VAL_16_comment_view.png)
+
 ### Likes App
+
+**Likes Model**
+
+![py-val-likes-model](assets/READMEN/PY_VAL_17_like_model.png)
+
+**Likes Serializer**
+
+![py-val-likes-serializer](assets/READMEN/PY_VAL_18_like_serializer.png)
+
+**Likes Admin**
+
+![py-val-likes-admin](assets/READMEN/PY_VAL_20_likes_admin.png)
+
+**Likes Urls**
+
+![py-val-likes-urls](assets/READMEN/PY_VAL_21_likes_urls.png)
+
+**Likes Views**
+
+![py-val-likes-views](assets/READMEN/PY_VAL_19_likes_views.png)
+
 ### Followers App
+
+**Followers Model**
+
+![py-val-follower-model](assets/READMEN/PY_VAL_23_follower_model.png)
+
+**Followers Serializer**
+
+![py-val-follower-serializer](assets/READMEN/PY_VAL_24_follower_serializer.png)
+
+**Followers Admin**
+
+![py-val-follower-admin](assets/READMEN/PY_VAL_22_follower_admin.png)
+
+**Followers Urls**
+
+![py-val-follower-urls](assets/READMEN/PY_VAL_25_folloer_urls.png)
+
+**Followers Views**
+
+![py-val-follower-views](assets/READMEN/PY_VAL_26_follower_view.png)
+
 ### Category App
+
+**Category Model**
+
+![py-val-category-model](assets/READMEN/PY_VAL_Category_2.png)
+
+**Category Serializer**
+
+![py-val-category-serializer](assets/READMEN/PY_VAL_Category_3.png)
+
+**Category Admin**
+
+![py-val-category-admin](assets/READMEN/PY_VAL_Category_1.png)
+
+**Category Urls**
+
+![py-val-category-urls](assets/READMEN/PY_VAL_Category_4.png)
+
+**Category Views**
+
+![py-val-category-views](assets/READMEN/PY_VAL_Category_5.png)
+
 ### Course App
+
+**Course Model**
+
+![py-val-course-model](assets/READMEN/PY_VAL_28_course_model.png)
+
+**Course Serializer**
+
+![py-val-course-serializer](assets/READMEN/PY_VAL_29_course_serializer.png)
+
+**Course Admin**
+
+![py-val-course-admin](assets/READMEN/PY_VAL_27_course_admin.png)
+
+**Course Urls**
+
+![py-val-course-urls](assets/READMEN/PY_VAL_30_cours_url.png)
+
+**Course Views**
+
+![py-val-course-view](assets/READMEN/PY_VAL_31_course_view.png)
+
 ### Review App
+
+**Review Model**
+
+![py-val-review-model](assets/READMEN/PY_VAL_38_rating_model.png)
+
+**Review Serializer**
+
+![py-val-review-serializer](assets/READMEN/PY_VAL_44_review_serializer.png)
+
+**Review Admin**
+
+![py-val-review-admin](assets/READMEN/PY_VAL_37_review_admin.png)
+
+**Review Urls**
+
+![py-val-review-urls](assets/READMEN/PY_VAL_45_review_url.png)
+
+**Review Views**
+
+![py-val-review-views](assets/READMEN/PY_VAL_1_review_view.png)
+
+
 ### Rating App
+
+**Rating Model**
+
+![py-val-review-model](assets/READMEN/PY_VAL_38_rating_model.png)
+
+**Rating Serializer**
+
+![py-val-review-serializer](assets/READMEN/PY_VAL_39_rating_serializer.png)
+
+**Rating Admin**
+
+![py-val-review-admin](assets/READMEN/PY_VAL_37_review_admin.png)
+
+**Rating Urls**
+
+![py-val-review-urls](assets/READMEN/PY_VAL_40_rating_url.png)
+
+**Rating Views**
+
+![py-val-review-views](assets/READMEN/PY_VAL_41_rating_view.png)
+
+
+
 ### Enrollment App
 
+**Enrollment Model**
+
+![py-val-enrollment-model](assets/READMEN/PY_VAL_33_enrollment_model.png)
+
+**Enrollment Serializer**
+
+![py-val-enrollment-serializer](assets/READMEN/PY_VAL_36_enrollment_serializer.png)
+
+**Enrollment Admin**
+
+![py-val-enrollment-admin](assets/READMEN/PY_VAL_32_enrollment_admin.png)
+
+**Enrollment Urls**
+
+![py-val-enrollment-urls](assets/READMEN/PY_VAL_34_enrollment_url.png)
+
+**Enrollment Views**
+
+![py-val-enrollment-views](assets/READMEN/PY_VAL_35_enrollment_view.png)
 
 
 # Bugs
 ## Unresolved Bugs
 ## Resolved Bugs
+
 # Deployment
+
+
 # Credits

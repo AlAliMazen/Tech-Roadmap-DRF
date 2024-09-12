@@ -7,31 +7,33 @@ from .serializer import CategorySerializer
 from tech_roadmap_root.permissions import IsOwnerOrReadOnly
 from django.http import Http404
 
+
 # Create your views here.
 class CategoryList(APIView):
     """
-    created to list all available categries for the Technology areas 
+    created to list all available categries for the Technology areas
     e.g. Software Developement, Networking, Cyber-Security, Virtualisation...
     """
 
     # serializer class for CREATE a Category
     serializer_class = CategorySerializer
-    
-    # check if the user is logged in and authenticated in order to write a post.
+
+    # check if the user is logged in and
+    # authenticated in order to write a post.
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
-    
+
     def get(self, request):
         category = Category.objects.all()
         serializer = CategorySerializer(
-            category, many=True, context={"request":request}
+            category, many=True, context={"request": request}
         )
         return Response(serializer.data)
-    
+
     def post(self, request):
         serializer = CategorySerializer(
-            data = request.data, context={"request":request}
+            data=request.data, context={"request": request}
         )
         if serializer.is_valid():
             serializer.save(owner=request.user)
@@ -42,12 +44,14 @@ class CategoryList(APIView):
             serializer.errors, status=status.HTTP_400_BAD_REQUEST
         )
 
+
 class CategoryDetail(APIView):
     """
     Used to update an exisiting category only for authenticated user
     """
     serializer_class = CategorySerializer
-    # check if the user is logged in and authenticated in order to write a post.
+    # check if the user is logged in and
+    # authenticated in order to write a post.
     # initialize the class of permission
     permission_classes = [IsOwnerOrReadOnly]
 
@@ -59,18 +63,18 @@ class CategoryDetail(APIView):
             return category
         except Category.DoesNotExist:
             raise Http404
-    
+
     def get(self, request, pk):
         category = self.get_object(pk)
         serializer = CategorySerializer(
-            category, context={'request':request}
+            category, context={'request': request}
         )
         return Response(serializer.data)
-    
+
     def put(self, request, pk):
         category = self.get_object(pk)
         serializer = CategorySerializer(
-            category, data=request.data, context={'request':request}
+            category, data=request.data, context={'request': request}
         )
         if serializer.is_valid():
             serializer.save()

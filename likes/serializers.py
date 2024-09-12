@@ -18,9 +18,9 @@ class LikeSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         try:
             # create is a method in the super (parent class of ModeSerializer)
-            # that is why we have to use super 
+            # that is why we have to use super
             return super().create(validated_data)
         except IntegrityError:
             raise serializers.ValidationError({
-                'detail': "possible duplicate - You can't like an article twice"
+                'detail-likes': "Dublicates - You can't like an article twice"
             })

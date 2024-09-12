@@ -30,12 +30,12 @@ class CourseList(generics.ListCreateAPIView):
         "owner__profile__nickname",
         "enrollments__owner__profile__nickname",
         "ratings__owner__profile__nickname",
-        "reviews__owner__profile__nickname", 
+        "reviews__owner__profile__nickname",
     ]
     search_fields = [
-        'title', 
+        'title',
         'about',
-        'owner__username', 
+        'owner__username',
     ]
     ordering_fields = [
         "reviews_count",
@@ -53,7 +53,8 @@ class CourseDetail(generics.RetrieveDestroyAPIView):
     by the participant.
     """
 
-    # set permission that logged in user can update his own comment, delete it or update
+    # set permission that logged in user can update his own comment,
+    # delete it or update
     permission_classes = [IsOwnerOrReadOnly]
 
     # Serializer for getting the exact comment to the article

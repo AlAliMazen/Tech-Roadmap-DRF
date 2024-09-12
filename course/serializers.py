@@ -10,11 +10,10 @@ class CourseSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
-    category_title = serializers.ReadOnlyField(source='category.title' )
+    category_title = serializers.ReadOnlyField(source='category.title')
     course_title = serializers.SerializerMethodField()
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
-    #enrollment_id = serializers.SerializerMethodField()
     reviews_count = serializers.ReadOnlyField()
     ratings_count = serializers.ReadOnlyField()
     enrollments_count = serializers.ReadOnlyField()
@@ -22,7 +21,7 @@ class CourseSerializer(serializers.ModelSerializer):
     # common convension is to call validate_[name_of_field]
     def validate_image(self, value):
         if value.size > 1024*1024*2:
-            raise serializers.ValidationError (
+            raise serializers.ValidationError(
                 "Image size is larger than 2MB"
             )
         if value.image.width > 4096:
@@ -34,47 +33,29 @@ class CourseSerializer(serializers.ModelSerializer):
                 "Image height is larger than 4096 inches !"
             )
         return value
-    
+
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
-    
+
     def get_created_at(self, obj):
         return naturaltime(obj.created_at)
-    
+
     def get_updated_at(self, obj):
         return naturaltime(obj.updated_at)
 
     def get_course_title(self, obj):
-       return obj.get_title_display()
-    
-    #def get_enrollment_id(self, obj):
-    #    user = self.context['request'].user
-    #    if user.is_authenticated:
-    #        like = Enrollment.objects.filter(
-    #            owner = user, course = obj
-    #        ).first()
-    #        return Enrollment.id if Enrollment else None
-    #    return None
-    
+        return obj.get_title_display()
+
     class Meta:
         model = Course
-        
-        fields = ['id','owner','profile_id','profile_image','category_title',
-                  'title','about','created_at','updated_at','duration',
-                  'thumbnailImage','category','course_title','is_owner','reviews_count',
-                  'ratings_count','enrollments_count']
-    
-    
-    
+        fields = "__all__"
+
     def create(self, validated_data):
         try:
             # create is a method in the super (parent class of ModeSerializer)
-            # that is why we have to use super 
+            # that is why we have to use super
             return super().create(validated_data)
         except IntegrityError:
             raise serializers.ValidationError({
-                'detail': "possible duplicate - You can't a user twice"
-            })
-    
-    
+                'detail': "possible duplicate - You can't a user twice"})  # noqa

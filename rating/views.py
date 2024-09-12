@@ -1,8 +1,9 @@
-from rest_framework import generics, permissions,filters
+from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from tech_roadmap_root.permissions import IsOwnerOrReadOnly
 from .models import Rating
 from .serializers import RatingSerializer
+
 
 # Create your views here.
 class RatingList(generics.ListCreateAPIView):
@@ -26,5 +27,4 @@ class RatingDetail(generics.RetrieveUpdateDestroyAPIView):
     #  delete or update it
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = RatingSerializer
-
     queryset = Rating.objects.all()
