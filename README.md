@@ -908,9 +908,38 @@ In the root project directory:
 
 Inside the the Procfile you need to use the following command 
 
-   `web: gunicorn [NAME_OF_YOUR_APP].wsgi``
+   `web: gunicorn [NAME_OF_YOUR_APP].wsgi`
 
+## CLOUDINARY:
 
+In order to serve media files, I have used [Cloudinary](https://cloudinary.com/) and after setting up an account, you should be able to grasp the API key which is not but a kind of link to set up into your local cloudinary URl config variable.
+
+The varibales for local deployment (ALLOWED_HOTS, CLOUDINARY, DATABASE_URL, SECRET_KEY) are recommended to be saved in an `env.py`which must be added to the .igonre  to avoid been tracked on GitHub and sensetive data are exposed.
+
+## Local Deployment:
+
+I have used VS Code as it is a free IDE version for developing this project, but in order to deploy the project and improve it int the way you need, follow the listed steps:
+
+   1. Copy the [Tech-Roadmap-DRF](https://github.com/AlAliMazen/Tech-Roadmap-DRF) url from the GitHub. 
+
+   ![GitHub Clone the URL](assets/READMEN/GIT_HUB.png)
+   
+   2. Open the VS Code application:inside the welcome screen there is an option to clone a remote repositoy and save it in a folder
+
+   ![VS Code Welcome screen](assets/READMEN/VS_CODE_CLONING.png)
+
+   3. Open a new terminal and run the following command to istall all the dependencies
+
+      `pip3 install -r > requirements.txt`
+
+   4. Make sure to create an env.py file and save the three impmortant varibales we described earlier.
+
+   5. In the terminaml run the command `python3 manage.py runserver`
+   and you should see the welcome screen of the API
+
+   **Note**
+
+   In the development time, you need to set the DEBUG varibale to true as it will let you see the errors as they happen.
 
 # Credits
 
