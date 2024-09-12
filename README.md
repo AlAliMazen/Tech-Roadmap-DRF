@@ -11,6 +11,7 @@ The primary purpose of Tech-ROADMAP-DRF is to demystify the IT landscape for new
 With Tech-ROADMAP-DRF, users can navigate the often overwhelming array of IT disciplines—whether it's programming, cybersecurity, data science, or cloud computing—and find a clear, structured path to follow. By offering personalized course recommendations based on user preferences and progress, the project aims to create a tailored learning experience that empowers individuals to confidently embark on their IT journey.
 
 In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to create a user-friendly backend system that not only delivers content but also fosters an interactive and supportive learning environment, making it an invaluable tool for aspiring IT professionals.
+
 - [Tech-Roadmap-DRF,](#tech-roadmap-drf-)
 - [Planning](#planning)
   * [Objectives](#objectives)
@@ -35,7 +36,6 @@ In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to cre
   * [Overview](#overview)
   * [Available Endpoints](#available-endpoints)
     + [Profiles endpoints:](#profiles-endpoints-)
-  * [Profile Model](#profile-model-1)
     + [Article Model](#article-model-1)
     + [Likes Model](#likes-model)
     + [Follower Model](#follower-model)
@@ -52,16 +52,31 @@ In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to cre
   * [Authentication and Security](#authentication-and-security)
   * [Application Server](#application-server)
 - [Testing](#testing)
-  * [Manuel Testing](#manuel-testing)
+  * [Manuel Testing:](#manuel-testing-)
 - [Python Validation](#python-validation)
-- [Bugs](#bugs)
-  * [Unresolved Bugs](#unresolved-bugs)
-  * [Resolved Bugs](#resolved-bugs)
+  * [What to validate](#what-to-validate)
+    + [Profiles App](#profiles-app)
+    + [Article App](#article-app)
+    + [Comment App](#comment-app)
+    + [Likes App](#likes-app)
+    + [Followers App](#followers-app)
+    + [Category App](#category-app)
+    + [Course App](#course-app)
+    + [Review App](#review-app)
+    + [Rating App](#rating-app)
+    + [Enrollment App](#enrollment-app)
 - [Deployment](#deployment)
+  * [GitHub :](#github--)
+  * [CI-Gitpod:](#ci-gitpod-)
+  * [HEROKU:](#heroku-)
+  * [CLOUDINARY:](#cloudinary-)
+  * [Local Deployment:](#local-deployment-)
 - [Credits](#credits)
+  * [Code:](#code-)
+  * [Media:](#media-)
+  * [Acknowledgement:](#acknowledgement-)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 # Planning
 
@@ -369,7 +384,6 @@ The Review model is designed to allow users to provide feedback on the courses t
 
 The Review model is connected to the User model, allowing each user to review a course they have taken. The unique constraint ensures that users provide only one review per course, which helps maintain the quality and reliability of the feedback system.
 
-
 ### Rating Model Overview
 
 The Rating model is designed to capture user ratings for courses within the Tech-ROADMAP-DRF platform. This model allows users to provide a numerical evaluation of the courses they have completed, contributing to a cumulative score that reflects the quality and user satisfaction of each course.
@@ -543,8 +557,6 @@ tech-Roadmap-DRF APi offeres the following endpoiint to achieve the CRUD (Create
 | `/dj-rest-auth/registration/` | Endpoints specifically for user registration, managed by django-rest-auth. |
 
 
-
-
 # Framework ,Libraries and Dependencies
 
 The tech-roadmap project is built on a solid foundation provided by the Django web framework. Django's high-level architecture and robust features streamline development, provides me with a rich and intuitive user experience to build a full API that can be deployed by many different frontend applications. 
@@ -595,7 +607,35 @@ To serve our Django application in a production environment, we've chosen the fo
 
 
 # Testing
- ## Manuel Testing
+ ## Manuel Testing: 
+
+The tests conducted on the API are based on my implemented logic and should be considered as a sample when implementing some UNIT tests (Automated).
+
+1. **Test when normal User tries to access the ADMIN Panel**
+
+Since a user has no admin privileges, he will get denies and be asked to use a correct username and correct password.
+![django admin pannel access](assets/READMEN/dj-admin.png)
+
+2. **Trying to access not defined model**: It will return **Not Found** page
+
+![Not-found-api-page](assets/READMEN/Not-found-page.png)
+
+3. **Try to get all the profiles**: a page with all included users will be returned in a JSON format.
+
+![all-profiles](assets/READMEN/Profile.png)
+
+4. **Try to get information about certain user by using it ID** : Since the ID of the user is unique, only sigle user will be brough back
+
+![certain-profile](assets/READMEN/certiain-profle.png)
+
+
+**In case**: the user ID is not there, the API will give a detail telling theat `No Profile matches the given query.`
+
+![no-profile-found](assets/READMEN/no_profile_found.png)
+
+5. **Trying to access any page which is not a part of the models** will result in **Not Found** page. 
+
+
 # Python Validation
 ## What to validate
 
@@ -605,13 +645,12 @@ For Validation of my code in this project I have used [Python-validator-by-Code-
 
 In every Model, I will validate the code which I have written in the models.py , serializers.py ,admin.py, urls.py and views.py
 
+
 ### Profiles App
 
 **Profiles Model**
 
 ![py-val-profile-model](assets/READMEN/PY_VAL_3_profile_model.png)
-
-
 
 **Profiles Serializer**
 
@@ -832,10 +871,6 @@ In every Model, I will validate the code which I have written in the models.py ,
 ![py-val-enrollment-views](assets/READMEN/PY_VAL_35_enrollment_view.png)
 
 
-# Bugs
-## Unresolved Bugs
-## Resolved Bugs
-
 # Deployment
 
 Deploying **Tec-Roadmap-DRF** involves setting up the necessary infrastructure to host the Django REST Framework (DRF) application in a production environment. This process includes configuring the server, managing static and media files, setting environment variables, and securing the application. The deployment can be done on various platforms, including cloud services like AWS, Heroku, or DigitalOcean, or on a dedicated server.
@@ -943,4 +978,47 @@ I have used VS Code as it is a free IDE version for developing this project, but
 
 # Credits
 
+## Code:
 
+Implementing the code for the Tech-Roadmap-DRF has been a long learning journey built on the top of many resources including 
+
+- [Code Institute Django REST Framework](https://learn.codeinstitute.net/ci_program/spadvfe2024_1)
+
+- [Django Rest Framework Documentation](https://www.django-rest-framework.org)
+
+- [Stack Overflow on how to access kwarg in generic API](https://stackoverflow.com/questions/51042871/how-to-access-url-kwargs-in-generic-api-views-listcreateapiview-to-be-more-spec)
+
+- [Django Documentation](https://docs.djangoproject.com/en/5.1/)
+
+- [W3Schools](https://www.w3schools.com/django/django_queryset_filter.php) on how to use querySet and filter
+
+- [Cloudinary Uploading, Managing and Transforming Assets](https://support.cloudinary.com/hc/en-us/categories/200477772-Uploading-Managing-and-Transforming-Assets)
+
+- [Deploying Python and Django Apps on Heroku](https://devcenter.heroku.com/articles/deploying-python)
+
+- [DB Diagram io](https://dbdiagram.io/d/66d9e92eeef7e08f0ed35d13):  for normalizing the database structure.
+
+
+## Media: 
+
+I depended on the following websites to for getting some photos and and creating the Logo of my FrontEnd:
+
+- [Can for creating the Logo](https://www.canva.com/design/DAGO4IYW6q4/MC5zaQHnuS3IVMcOWSXKxA/edit?utm_content=DAGO4IYW6q4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+- [Unsplash for some free photos](https://unsplash.com/)
+
+- For the README.md (recommended by my Mentor)
+1. [Tribehub](https://github.com/andy-guttridge/tribehub_drf/tree/main)
+
+
+## Acknowledgement:
+
+Writing the code of Tech-Road-DRF as an API has been a rewarding journey, and I would like to express my gratitude for the inspiration, guidance, and resources that have made this project possible:
+
+- Slack Community
+
+- My Mentor Jubril Akolade
+
+- Code Institute tutoring support
+
+- COde Institute Student Care
