@@ -11,7 +11,6 @@ The primary purpose of Tech-ROADMAP-DRF is to demystify the IT landscape for new
 With Tech-ROADMAP-DRF, users can navigate the often overwhelming array of IT disciplines—whether it's programming, cybersecurity, data science, or cloud computing—and find a clear, structured path to follow. By offering personalized course recommendations based on user preferences and progress, the project aims to create a tailored learning experience that empowers individuals to confidently embark on their IT journey.
 
 In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to create a user-friendly backend system that not only delivers content but also fosters an interactive and supportive learning environment, making it an invaluable tool for aspiring IT professionals.
-
 - [Tech-Roadmap-DRF,](#tech-roadmap-drf-)
 - [Planning](#planning)
   * [Objectives](#objectives)
@@ -46,6 +45,8 @@ In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to cre
     + [Rating Model](#rating-model)
     + [Enrollment Endpoints](#enrollment-endpoints)
     + [Administration and Authorisation](#administration-and-authorisation)
+- [Agile Development Process](#agile-development-process)
+  * [User Story](#user-story)
 - [Framework ,Libraries and Dependencies](#framework--libraries-and-dependencies)
   * [Django Framework and Extensions](#django-framework-and-extensions)
   * [Database Management](#database-management)
