@@ -47,7 +47,7 @@ In this section, we will test the **CRUD** (Create, Read, Update, Delete) functi
 | Endpoint                     | Functionality                                                                                                    | Result |
 |------------------------------|------------------------------------------------------------------------------------------------------------------|--------|
 | `likes/`                    | **Create:** Use the `POST` method to create a new like.<br>**Retrieve:** Use the `GET` method to retrieve a list of all likes. | Pass   |
-| `likes/<int:pk>/`           | **Retrieve:** Use the `GET` method to retrieve a specific like based on its primary key (PK).<br>**Update:** Use the `PUT` or `PATCH` method to update the details of a specific like (e.g., change the like status).<br>**Delete:** Use the `DELETE` method to delete a specific like. | Pass   |
+| `likes/<int:pk>/`           | **Retrieve:** Use the `GET` method to retrieve a specific like based on its primary key (PK).<br>**Delete:** Use the `DELETE` method to delete a specific like. | Pass   |
 
 
 ### Follower Model API Endpoints
