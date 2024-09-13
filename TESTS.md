@@ -10,6 +10,7 @@ In this section, we will test the **CRUD** (Create, Read, Update, Delete) functi
   * [API Testing Overview](#api-testing-overview)
     + [Profiles API Endpoints](#profiles-api-endpoints)
     + [Article Model API Endpoints](#article-model-api-endpoints)
+    + [Likes Model API Endpoints](#likes-model-api-endpoints)
     + [Follower Model API Endpoints](#follower-model-api-endpoints)
     + [Comment Model API Endpoints](#comment-model-api-endpoints)
     + [Category Model API Endpoints](#category-model-api-endpoints)
@@ -20,6 +21,7 @@ In this section, we will test the **CRUD** (Create, Read, Update, Delete) functi
     + [Administration and Authorization API Endpoints](#administration-and-authorization-api-endpoints)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 
 ### Profiles API Endpoints
@@ -37,6 +39,15 @@ In this section, we will test the **CRUD** (Create, Read, Update, Delete) functi
 |------------------------------|----------------------------------------------------------------------------------------------------------------|--------|
 | `articles/`                  | **Create:** Use the `POST` method to create a new article.<br>**Retrieve:** Use the `GET` method to retrieve a list of all articles. | Pass   |
 | `articles/<int:pk>/`         | **Retrieve:** Use the `GET` method to retrieve a specific article based on its primary key (PK).                 | Pass   |
+
+
+
+### Likes Model API Endpoints
+
+| Endpoint                     | Functionality                                                                                                    | Result |
+|------------------------------|------------------------------------------------------------------------------------------------------------------|--------|
+| `likes/`                    | **Create:** Use the `POST` method to create a new like.<br>**Retrieve:** Use the `GET` method to retrieve a list of all likes. | Pass   |
+| `likes/<int:pk>/`           | **Retrieve:** Use the `GET` method to retrieve a specific like based on its primary key (PK).<br>**Update:** Use the `PUT` or `PATCH` method to update the details of a specific like (e.g., change the like status).<br>**Delete:** Use the `DELETE` method to delete a specific like. | Pass   |
 
 
 ### Follower Model API Endpoints
