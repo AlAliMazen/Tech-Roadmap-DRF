@@ -485,7 +485,7 @@ tech-Roadmap-DRF APi offeres the following endpoiint to achieve the CRUD (Create
 | Endpoint | Functionality |
 |---|---|
 | `likes/` | **Create:** Use the `POST` method to create a new like. **Retrieve:** Use the `GET` method to retrieve a list of all likes. |
-| `likes/<int:pk>/` | **Retrieve:** Use the `GET` method to retrieve a specific like based on its primary key (PK). **Update:** Use the `PUT` or `PATCH` method to update the details of a specific like (e.g., change the like status). **Delete:** Use the `DELETE` method to delete a specific like. |
+| `likes/<int:pk>/` | **Retrieve:** Use the `GET` method to retrieve a specific like based on its primary key (PK). **Delete:** Use the `DELETE` method to delete a specific like. |
 
 
 ### Follower Model
@@ -556,6 +556,22 @@ tech-Roadmap-DRF APi offeres the following endpoiint to achieve the CRUD (Create
 | `/dj-rest-auth/logout/` | Custom logout route (in most cases, it is defined in `logout_route`). |
 | `/dj-rest-auth/` | Endpoints for user registration, login, password reset, etc., provided by django-rest-auth. |
 | `/dj-rest-auth/registration/` | Endpoints specifically for user registration, managed by django-rest-auth. |
+
+
+# Agile Development Process
+
+## User Story
+
+In the Agile development process, user stories are essential for defining and understanding the requirements and needs of users. They provide a clear and concise way to capture what users want to achieve and why those features are important. The user stories [outlined for the Tech-Roadmap](https://github.com/users/AlAliMazen/projects/5) project represent various functionalities that address the needs of different user types, including visitors, logged-in users.
+
+These user stories are crucial because they:
+
+- **Guide Development**: They serve as a blueprint for developers, ensuring that the features built align with user expectations and project goals.
+- **Prioritize Features**: They help prioritize which features to implement first based on user needs and business value.
+- **Facilitate Communication**: They provide a common language for developers, designers, and stakeholders to discuss and agree on what needs to be built.
+- **Improve User Experience**: By focusing on specific user needs and scenarios, user stories ensure that the application is user-centered and addresses real-world problems.
+
+Overall, these user stories help streamline the development process, ensuring that the Tech-Roadmap project meets its objectives and delivers a valuable experience to its users.
 
 
 # Framework ,Libraries and Dependencies
