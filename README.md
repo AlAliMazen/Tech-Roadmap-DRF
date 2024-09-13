@@ -52,7 +52,7 @@ In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to cre
   * [Authentication and Security](#authentication-and-security)
   * [Application Server](#application-server)
 - [Testing](#testing)
-  * [Manuel Testing:](#manuel-testing-)
+  * [Manual Testing](#manual-testing)
 - [Python Validation](#python-validation)
   * [What to validate](#what-to-validate)
     + [Profiles App](#profiles-app)
@@ -77,6 +77,7 @@ In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to cre
   * [Acknowledgement:](#acknowledgement-)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 # Planning
 
@@ -607,34 +608,12 @@ To serve our Django application in a production environment, we've chosen the fo
 
 
 # Testing
- ## Manuel Testing: 
 
-The tests conducted on the API are based on my implemented logic and should be considered as a sample when implementing some UNIT tests (Automated).
+For all pre-mentioned API end point, I have conducted a manual test foe each endpoint with a superuser and a normla user, making sure that the CRUD functionality are achieved and provide a smooth functionality for the front end application later on. 
 
-1. **Test when normal User tries to access the ADMIN Panel**
+## Manual Testing
 
-Since a user has no admin privileges, he will get denies and be asked to use a correct username and correct password.
-![django admin pannel access](assets/READMEN/dj-admin.png)
-
-2. **Trying to access not defined model**: It will return **Not Found** page
-
-![Not-found-api-page](assets/READMEN/Not-found-page.png)
-
-3. **Try to get all the profiles**: a page with all included users will be returned in a JSON format.
-
-![all-profiles](assets/READMEN/Profile.png)
-
-4. **Try to get information about certain user by using it ID** : Since the ID of the user is unique, only sigle user will be brough back
-
-![certain-profile](assets/READMEN/certiain-profle.png)
-
-
-**In case**: the user ID is not there, the API will give a detail telling theat `No Profile matches the given query.`
-
-![no-profile-found](assets/READMEN/no_profile_found.png)
-
-5. **Trying to access any page which is not a part of the models** will result in **Not Found** page. 
-
+All tests can be reached under [Tech-Roadmap-DRF](./TESTS.md)
 
 # Python Validation
 ## What to validate
