@@ -12,8 +12,11 @@ With Tech-ROADMAP-DRF, users can navigate the often overwhelming array of IT dis
 
 In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to create a user-friendly backend system that not only delivers content but also fosters an interactive and supportive learning environment, making it an invaluable tool for aspiring IT professionals.
 
+# Live Deployed API
+[tech-roadmap-DRF](https://tech-roadmap-drf-6a7361986bbb.herokuapp.com/)
 
 - [Tech-Roadmap-DRF,](#tech-roadmap-drf-)
+- [Live Deployed API](#live-deployed-api)
 - [Planning](#planning)
   * [Objectives](#objectives)
   * [Allocated Time for Django Rest API](#allocated-time-for-django-rest-api)
@@ -80,6 +83,7 @@ In essence, Tech-ROADMAP-DRF harnesses the capabilities of Django and DRF to cre
   * [Acknowledgement:](#acknowledgement-)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 
 # Planning
